@@ -1,6 +1,7 @@
 # starterpack-telco-en
 
 ## Rasa Starter Pack: Telecom in English
+![Telecom](images/telecom.png)
 
 Rasa has created a new starter pack for building AI assistants in Telecom with the Rasa CALM framework.
 
