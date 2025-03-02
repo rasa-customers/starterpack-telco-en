@@ -1,0 +1,33 @@
+flows:
+
+  pattern_search:
+    description: Flow for handling how to run a speed test
+    name: pattern search
+    steps:
+      - action: action_trigger_search
+      - action: action_sleep_and_respond
+      - action: utter_help_run_speed_test
+      - action: utter_acknowledge_user_know_how_run_test
+
+  pattern_human_handoff:
+    description: Conversation repair flow for switching users to a human agent if their request can't be handled
+    name: pattern human handoff
+    steps:
+      - action: utter_connect_human_handoff_pattern
+  
+  pattern_completed:
+    description: all flows have been completed and there is nothing else to be done
+    name: pattern completed
+    steps:
+      - noop: True
+        next: END
+
+  pattern_session_start:
+    description: Flow for starting the conversation
+    name: pattern session start
+    nlu_trigger:
+      - intent: session_start
+    steps:
+      - action: utter_session_start
+      - action: action_session_start
+  # pattern_user_silence:

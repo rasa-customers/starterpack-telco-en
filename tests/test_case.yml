@@ -1,0 +1,49 @@
+test_cases:
+  - test_case: one happy path
+    steps:
+    - user: "Hey, my internet is very slow. What's going on?"
+    - utter: utter_acknowledge_issue
+    - utter: utter_ask_run_speed_test
+    - user: "yes"
+    - utter: utter_ask_network_speed
+    - user: "15 Mpbs"
+    - utter: utter_acknowledge_speed_test_not_good
+    - utter: utter_propose_reset_router_solution
+    - utter: utter_ask_reset_router
+    - user: "ok"
+    - bot: "okay 10 seconds has passed .."
+    - utter: utter_run_speed_test_again
+    - utter: utter_speed_issue_not_resolved
+    - utter: utter_connect_human_handoff_pattern
+
+  - test_case: Telco Troubleshooting
+    steps:
+    - user: "Hey, my internet is very slow. What's going on?"
+      assertions:
+        - slot_was_set:
+          - name: "run_speed_test"
+            value: True
+        - flow_started: "internet_slow"
+        - bot_uttered:
+            utter_name: "utter_ask_run_speed_test"
+    - user: "Yes, how do I do that?"
+      assertions:
+        - flow_started: "run_speed_test"
+        - bot_uttered:
+            utter_name: "utter_help_run_speed_test"
+    - user: "OK"
+      assertions:
+        - flow_started: "internet_slow"
+        - bot_uttered:
+            utter_name: "utter_speed_test_not_good"
+        - flow_started: "reset_router"
+        - bot_uttered:
+            utter_name: "utter_ask_reset_router"
+    - user: "Now it's much better, 80 Mbps."
+      assertions:
+        - bot_uttered:
+            utter_name: "utter_internet_slo_resolved"
+    - user: "Thanks"
+      assertions:
+        - bot_uttered:
+            utter_name: "utter_end_conversation"

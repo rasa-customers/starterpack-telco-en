@@ -1,0 +1,21 @@
+recipe: default.v1
+language: en
+pipeline:
+- name: SingleStepLLMCommandGenerator
+  llm:
+    model_group: openai-direct-gpt-4
+  flow_retrieval:
+    active: false
+  prompt_template: prompts/command-generator.jinja2
+
+policies:
+- name: FlowPolicy
+- name: EnterpriseSearchPolicy
+  prompt: prompts/enterprise_search.jinja2
+  vector_store:
+    type: "faiss"
+    source: "./docs"
+  llm:
+    model_group: openai-direct-gpt-4
+
+assistant_id: 20250226-101111-delicious-dimension

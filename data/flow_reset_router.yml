@@ -1,0 +1,9 @@
+flows:
+  reset_router:
+    if: False # block this flow from being triguered by CALM and control when it will be called
+    description: Help users when restart the router
+    steps:
+      - collect: reset_router
+        reset_after_flow_ends: true
+      - action: utter_waiting
+      - action: action_sleep_and_respond

@@ -1,0 +1,65 @@
+slots:
+  un_speed_test:
+    type: bool
+    mappings:
+      - type: from_llm
+  network_speed:
+    type: float
+    mappings:
+      - type: from_llm
+  network_speed_again:
+    type: float
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_acknowledge_issue:
+    - text: |
+        I see.
+        I need you to run a network speed test.
+        This will help identify the root cause of the issue you are facing.
+  utter_ask_run_speed_test:
+    - text: |
+        Can you please run a speed test?
+  utter_acknowledge_user_know_how_run_test:
+    - text: |
+        Now, you know what is a network speed test and how to run.
+  utter_ask_network_speed:
+  - text: |
+       Can you please run the test now and tell me your current network speed?
+
+  utter_acknowledge_speed_test_not_good:
+  - text: |
+      Oh, I see {network_speed} Mbps is definitely not good, it explains the issue you are facing.
+  utter_propose_reset_router_solution:
+  - text: |      
+      Let's try resetting your router, it can help resolve some network speed.
+
+  utter_ask_network_speed_again:
+    - text: |
+        We are making good progress.
+        Let's try again 🔄
+        Can you please run the network speed test again and provide me the number please?
+
+
+  utter_speed_issue_resolved:
+    - text: |
+        {network_speed_again} Mbps, Awesome! 🚀
+        If the Internet gets slow again, you can always reset the router.
+        If that doesn't help, let me know, and we can try something else. 😊
+  utter_speed_issue_not_resolved:
+    - text: |
+        {network_speed} Mbps is still low, not much has changed... 
+        I am sorry that your problem has not been solved. Let me connect you to our agent!
+
+  utter_speed_network_not_issue:
+    - text: |
+        {network_speed} Mbps sounds right. The speed seems to be in order.
+
+  utter_other_issues:
+    - text: |
+        When you experience slow Internet can be a factor to resolve the issue
+        for instance when browsing websites or using some apps.
+        
+actions:
+  - action_sleep_and_respond
