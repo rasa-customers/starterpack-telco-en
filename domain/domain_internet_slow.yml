@@ -16,7 +16,7 @@ responses:
   utter_acknowledge_issue:
     - text: |
         I see.
-        I need you to run a network speed test.
+        I need you to run a network speed test 🛜.
         This will help identify the root cause of the issue you are facing.
   utter_ask_run_speed_test:
     - text: |

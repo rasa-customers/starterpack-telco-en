@@ -12,3 +12,6 @@ responses:
   utter_waiting:
   - text: |
       Let's wait 10 seconds ... ⏳ ...
+  utter_show_router:
+  - text: "Here is where you can find the router's reset button."
+    image: "images/reset_router.png"
