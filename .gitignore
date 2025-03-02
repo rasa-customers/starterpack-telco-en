@@ -1,0 +1,4 @@
+.rasa
+models
+actions/__init__.py
+actions/__pycache__/
