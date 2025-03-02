@@ -5,8 +5,6 @@
   <img src="images/telecom.png" alt="Alt Text">
 </p>
 
-![Telecom](images/telecom.png)
-
 Rasa has created a new starter pack for building AI assistants in Telecom with the Rasa CALM framework.
 
 Our Telecom Intelligent Assistant can
