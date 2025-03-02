@@ -1,0 +1,28 @@
+version: "3.1"
+
+slots:
+  user_name:
+    type: text
+    mappings:
+      - type: custom
+
+responses:
+  utter_session_start:
+    - text: |
+        Hi 👋
+        I'm artificial intelligent assistant at Rasacom that can check your balance and data usage or resolve issues with Internet connectivity. 
+        How may I help you?
+
+    # Hi, {user_name}! 👋
+    # I'm artificial intelligent assistant at Rasacom that can check your balance and data usage or resolve issues with Internet connectivity. 
+    # How may I help you?
+    # - text: | #first time user
+    #     Hi, Max, how are you doing? 👋
+    #     I am your virtual AI assistant that can check your balance and data usage or resolve issues with Internet connectivity. How may I help you?
+    # - text: | #returning user
+    #     Hi, Max, welcome back! 👋
+    #     How may I help you today?
+        
+  utter_end_conversation:
+    - text: |
+        You are welcome! Have a nice day!

@@ -1,0 +1,14 @@
+slots:
+  reset_router:
+    type: bool
+    mappings:
+      - type: from_llm
+
+responses:
+
+  utter_ask_reset_router:
+  - text: |
+      Can you turn the router off, wait 10 seconds, and turn it back on?
+  utter_waiting:
+  - text: |
+      Let's wait 10 seconds ... ⏳ ...
