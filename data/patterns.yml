@@ -30,4 +30,3 @@ flows:
     steps:
       - action: utter_session_start
       - action: action_session_start
-  # pattern_user_silence:
