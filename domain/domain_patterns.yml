@@ -2,6 +2,6 @@
 responses:
   utter_connect_human_handoff_pattern:
     - text: |
-            Let me connect you to an agent 📲
+            Let me connect you to our human agent 📲
             ring ... ring ... 📞
   
