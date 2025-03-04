@@ -12,16 +12,6 @@ responses:
         Hi 👋
         I am your virtual AI assistant that can check your bills or resolve issues with Internet speed.
         How may I help you?
-
-    # Hi, {user_name}! 👋
-    # I'm artificial intelligent assistant at Rasacom that can check your balance and data usage or resolve issues with Internet connectivity. 
-    # How may I help you?
-    # - text: | #first time user
-    #     Hi, Max, how are you doing? 👋
-    #     I am your virtual AI assistant that can check your balance and data usage or resolve issues with Internet connectivity. How may I help you?
-    # - text: | #returning user
-    #     Hi, Max, welcome back! 👋
-    #     How may I help you today?
         
   utter_end_conversation:
     - text: |

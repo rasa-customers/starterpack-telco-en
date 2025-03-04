@@ -1,8 +1,5 @@
 slots:
-  do_speed_test:
-    type: bool
-    mappings:
-      - type: from_llm
+
   network_speed:
     type: float
     mappings:
@@ -18,12 +15,7 @@ responses:
         I see.
         I would need you to run a network speed test 🛜.
         This will help identify the root cause of the issue you are facing.
-  utter_ask_do_speed_test:
-    - text: |
-        Can you please run the test and tell me your current network speed?
-  utter_acknowledge_user_know_how_run_test:
-    - text: |
-        Now, you know what is a network speed test and how to run.
+
   utter_ask_network_speed:
   - text: |
        Can you please run the test now and tell me your current network speed?
@@ -36,11 +28,13 @@ responses:
     - text: |
         We are making good progress!
         If you run the test again, what is the network speed now?
+  
   utter_speed_issue_resolved:
     - text: |
         {network_speed_again} Mbps, Awesome! 🚀
         If the Internet gets slow again, you can always reset the router.
         If that doesn't help, let me know, and we can try something else. 😊
+  
   utter_speed_issue_not_resolved:
     - text: |
         {network_speed} Mbps is still low, not much has changed... 
@@ -52,8 +46,7 @@ responses:
 
   utter_other_issues:
     - text: |
-        When you experience slow Internet can be a factor to resolve the issue
-        for instance when browsing websites or using some apps.
+        When do you experience slow Internet: browsing websites or using some apps?
         
 actions:
   - action_sleep_and_respond

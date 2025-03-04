@@ -22,6 +22,4 @@ responses:
       payload: "SetSlots(reset_router=True)"
     - title: "Facing a problem"
       payload: "SetSlots(reset_router=False)"
-  utter_waiting:
-  - text: |
-      Let's wait 10 seconds ... ⏳ ...
+

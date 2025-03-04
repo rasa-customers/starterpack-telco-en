@@ -12,7 +12,6 @@ slots:
     type: text
     mappings:
       - type: from_llm
-
       
 responses:
 
