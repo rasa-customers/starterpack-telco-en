@@ -5,13 +5,23 @@ slots:
       - type: from_llm
 
 responses:
-
-  utter_ask_reset_router:
-  - text: |
-      Can you turn the router off, wait 10 seconds, and turn it back on?
-  utter_waiting:
-  - text: |
-      Let's wait 10 seconds ... ⏳ ...
+  utter_propose_reset_router_solution:
+  - text: |      
+      Let's try resetting your router, it can help resolve some network speed.
+      Please turn the router off, wait 10 seconds and turn it back on.
+  
   utter_show_router:
   - text: "Here is where you can find the router's reset button."
     image: "images/reset_router.png"
+  
+  utter_ask_reset_router:
+  - text: |
+      Let me know when you are done!
+    buttons:
+    - title: "Done"
+      payload: "SetSlots(reset_router=True)"
+    - title: "Facing a problem"
+      payload: "SetSlots(reset_router=False)"
+  utter_waiting:
+  - text: |
+      Let's wait 10 seconds ... ⏳ ...

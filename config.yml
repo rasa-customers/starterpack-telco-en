@@ -11,7 +11,6 @@ pipeline:
 policies:
 - name: FlowPolicy
 - name: EnterpriseSearchPolicy
-  prompt: prompts/enterprise_search.jinja2
   vector_store:
     type: "faiss"
     source: "./docs"

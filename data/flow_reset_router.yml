@@ -2,8 +2,9 @@ flows:
   reset_router:
     description: Help user restart and rest their router
     steps:
+      - action: utter_propose_reset_router_solution
+      - action: utter_show_router
       - collect: reset_router
         reset_after_flow_ends: true
-      - action: utter_show_router
-      - action: utter_waiting
-      - action: action_sleep_and_respond
+        
+

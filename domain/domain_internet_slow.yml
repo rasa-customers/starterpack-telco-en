@@ -1,5 +1,5 @@
 slots:
-  un_speed_test:
+  do_speed_test:
     type: bool
     mappings:
       - type: from_llm
@@ -16,11 +16,11 @@ responses:
   utter_acknowledge_issue:
     - text: |
         I see.
-        I need you to run a network speed test 🛜.
+        I would need you to run a network speed test 🛜.
         This will help identify the root cause of the issue you are facing.
-  utter_ask_run_speed_test:
+  utter_ask_do_speed_test:
     - text: |
-        Can you please run a speed test?
+        Can you please run the test and tell me your current network speed?
   utter_acknowledge_user_know_how_run_test:
     - text: |
         Now, you know what is a network speed test and how to run.
@@ -31,17 +31,11 @@ responses:
   utter_acknowledge_speed_test_not_good:
   - text: |
       Oh, I see {network_speed} Mbps is definitely not good, it explains the issue you are facing.
-  utter_propose_reset_router_solution:
-  - text: |      
-      Let's try resetting your router, it can help resolve some network speed.
-
+  
   utter_ask_network_speed_again:
     - text: |
-        We are making good progress.
-        Let's try again 🔄
-        Can you please run the network speed test again and provide me the number please?
-
-
+        We are making good progress!
+        If you run the test again, what is the network speed now?
   utter_speed_issue_resolved:
     - text: |
         {network_speed_again} Mbps, Awesome! 🚀

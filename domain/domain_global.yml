@@ -10,7 +10,7 @@ responses:
   utter_session_start:
     - text: |
         Hi 👋
-        I'm artificial intelligent assistant at Rasacom that can check your balance and data usage or resolve issues with Internet connectivity. 
+        I am your virtual AI assistant that can check your bills or resolve issues with Internet speed.
         How may I help you?
 
     # Hi, {user_name}! 👋

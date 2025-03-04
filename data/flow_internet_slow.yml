@@ -1,20 +1,18 @@
 flows:
-  internet_slow:
-    description: Help users understand why their internet is slow and provide solutions
+  internet_slow: # flow name mandatory
+    description: Help users solve when internet is slow and provide solutions # description important this will be sent to CALM
     steps:
       - action: utter_acknowledge_issue
-      - collect: run_speed_test
+      - collect: network_speed
+        reset_after_flow_ends: true
         next:
-          - if: slots.run_speed_test is true
+          - if: slots.network_speed < 20
             then:
-              - collect: network_speed
-                reset_after_flow_ends: true
+              - action: utter_acknowledge_speed_test_not_good
+              - call: reset_router
                 next:
-                  - if: slots.network_speed < 20
+                  - if: slots.reset_router
                     then:
-                      - action: utter_acknowledge_speed_test_not_good
-                      - action: utter_propose_reset_router_solution
-                      - call: reset_router
                       - collect: network_speed_again
                         reset_after_flow_ends: true
                         next:
@@ -26,12 +24,12 @@ flows:
                             - action: utter_speed_issue_not_resolved
                             - link: pattern_human_handoff
                   - else:
-                    - action: utter_speed_network_not_issue
-                    - action: utter_other_issues
                     - link: pattern_human_handoff
+              
           - else:
-            - noop: true
-              next: "END"
+            - action: utter_speed_network_not_issue
+            - action: utter_other_issues
+            - link: pattern_human_handoff
 
 
                       
