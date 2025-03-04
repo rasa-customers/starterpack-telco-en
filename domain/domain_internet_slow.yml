@@ -38,7 +38,7 @@ responses:
   utter_speed_issue_not_resolved:
     - text: |
         {network_speed} Mbps is still low, not much has changed... 
-        I am sorry that your problem has not been solved. Let me connect you to our agent!
+        I am sorry that your problem has not been solved.
 
   utter_speed_network_not_issue:
     - text: |
