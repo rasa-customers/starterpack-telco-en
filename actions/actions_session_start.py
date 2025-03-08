@@ -1,9 +1,9 @@
-import os
-from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
-from twilio.rest import Client
+from rasa_sdk.events import EventType
+
+import pandas as pd
+import asyncio
 
 class ActionSessionStart(Action):
 
@@ -15,9 +15,12 @@ class ActionSessionStart(Action):
         # get the call metadata from the tracker
         metadata = tracker.get_slot("session_started_metadata")
         # set appropriate slots
-        if metadata:
-            return [
-                SlotSet("user_name", metadata.get("user_phone")),
-            ]
+        
+        return [] 
+class ActionSleepAndRespond(Action):
+    def name(self) -> str:
+        return "action_sleep_few_sec"
 
+    async def run(self, dispatcher, tracker, domain) -> list[EventType]:
+        await asyncio.sleep(3)
         return []

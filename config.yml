@@ -1,12 +1,28 @@
 recipe: default.v1
 language: en
 pipeline:
-- name: SingleStepLLMCommandGenerator
-  llm:
-    model_group: openai-direct-gpt-4
-  flow_retrieval:
-    active: false
-  prompt_template: prompts/command-generator.jinja2
+  - name: WhitespaceTokenizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  - name: LogisticRegressionClassifier
+    max_iter: 500  # Increase this value
+    # solver: lbfgs
+    # tol: 0.0001
+    # random_state: 42
+    # ranking_length: 10
+  - name: CRFEntityExtractor
+  - name: NLUCommandAdapter
+    user_input:
+      max_characters: 420
+  - name: SingleStepLLMCommandGenerator
+    llm:
+      model_group: openai-direct-gpt-4
+    flow_retrieval:
+      active: false
+    prompt_template: prompts/command-generator.jinja2
 
 policies:
 - name: FlowPolicy

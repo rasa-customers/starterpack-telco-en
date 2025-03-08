@@ -1,25 +1,11 @@
-slots:
-  reset_router:
-    type: bool
-    mappings:
-      - type: from_llm
 
 responses:
-  utter_propose_reset_router_solution:
-  - text: |      
-      Let's try resetting your router, it can help resolve some network speed.
-      Please turn the router off, wait 10 seconds and turn it back on.
-  
-  utter_show_router:
-  - text: "Here is where you can find the router's reset button."
-    image: "images/reset_router.png"
-  
-  utter_ask_reset_router:
-  - text: |
-      Let me know when you are done!
-    buttons:
-    - title: "Done"
-      payload: "SetSlots(reset_router=True)"
-    - title: "Facing a problem"
-      payload: "SetSlots(reset_router=False)"
-
+  utter_explain_reset_router:
+  - text: |          
+      I will reset your router remotely to try to fix the issue.
+      No action is needed from your end.
+      It may take a minute. Please hold on ⏳  
+  utter_image_reset_router:
+  - text: | 
+      Router is reset successfully! 🎉
+    image: "https://e7.pngegg.com/pngimages/158/411/png-clipart-cloud-computing-router-computer-network-gateway-cloud-storage-cloud-computing-computer-network-angle-thumbnail.png"

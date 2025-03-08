@@ -1,0 +1,72 @@
+flows:
+  fix_internet_slow: # flow name mandatory
+    description: Help users solve when internet is slow and provide solutions # description important this will be sent to CALM
+    steps:
+      - action: utter_acknowledge_issue
+      - action: action_sleep_few_sec
+      - call: run_diagnostics # first try
+        next:
+          - if: slots.network_speed < 100
+            then:
+              - action: utter_acknowledge_speed_test_not_good
+              - action: action_sleep_few_sec
+              - action: utter_propose_reboot_router_solution
+              - call: reboot_router
+                next:
+                  - if: slots.reboot_router
+                    then:
+                      - call: run_diagnostics # Second try
+                        next:
+                          - if: slots.network_speed > 100
+                            then:
+                              - action: action_sleep_few_sec
+                              - action: utter_speed_issue_resolved
+                                next: "END"
+                          - else:
+                            - action: action_sleep_few_sec
+                            - action: utter_speed_issue_not_resolved
+                            - call: reset_router
+                            - action: utter_final_diagnistics_run
+                            - call: run_diagnostics # Third try
+                              next:
+                                - if: slots.network_speed < 100
+                                  then:
+                                    - action: utter_acknowledge_speed_test_not_good
+                                    - action: utter_fail_to_find_fix
+                                    - link: pattern_human_handoff
+                                - else:
+                                  - action: action_sleep_few_sec
+                                  - action: utter_final_try_worked
+                                  - action: utter_speed_issue_resolved
+                                    next: "END"
+
+
+                  - else:
+                    - link: pattern_human_handoff
+          - else:
+            - action: utter_speed_network_not_issue
+            - action: action_sleep_few_sec
+            - action: utter_propose_other_solutions
+            - action: action_sleep_few_sec
+            - collect: confirm_connect_human
+              next:
+                - if: slots.confirm_connect_human
+                  then:
+                    - noop: true
+                      next: "END"
+                - else: 
+                  - action: action_sleep_few_sec
+                  - action: utter_final_help
+                    next: "END"
+            
+
+  run_diagnostics:
+    if: False
+    description: run diagnostics to check the internet speed for the user
+    steps:
+      - action: utter_communicate_run_diagnosticss
+
+      - action: actions_run_speed_test
+        
+              
+

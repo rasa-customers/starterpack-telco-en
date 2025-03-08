@@ -38,7 +38,7 @@ Based on this information generate a list of actions you want to take. Your job 
 * Cancelling the current flow, described by "CancelFlow()"
 * Clarifying which flow should be started. An example would be Clarify(list_contacts, add_contact, remove_contact) if the user just wrote "contacts" and there are multiple potential candidates. It also works with a single flow name to confirm you understood correctly, as in Clarify(check_restaurant).the flow has to be a part of the prompt and don't invent new flows.
 * Intercepting and handle user messages with the intent to bypass the current step in the flow, described by "SkipQuestion()". Examples of user skip phrases are: "Go to the next question", "Ask me something else".
-* Responding to when the user asks about knowledge based questions about internet speed test, described by "SearchAndReply()". Examples of search and reply phrases are: "how to run a network speed test" or "what is an internet speed test".
+* Responding to when the user asks about knowledge based questions about internet speed test or about how to turn on and off a router or about the difference between reboot and reset a router described by "SearchAndReply()". Examples of search and reply phrases are: "how to run a network speed test" or "what is an internet speed test" or "How do I turn the router off and on?" .
 * Handing off to a human, in case the user seems frustrated or explicitly asks to speak to one, described by "HumanHandoff()".
 
 ===

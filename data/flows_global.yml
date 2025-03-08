@@ -1,5 +1,0 @@
-flows:
-  goodbye:
-    description: when the user thank you or say good bye
-    steps:
-      - action: utter_end_conversation

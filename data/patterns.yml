@@ -11,7 +11,7 @@ flows:
     description: Conversation repair flow for switching users to a human agent if their request can't be handled
     name: pattern human handoff
     steps:
-      - action: utter_connect_human_handoff_pattern
+      - action: utter_confirm_connect_human_handoff_pattern
   
   pattern_completed:
     description: all flows have been completed and there is nothing else to be done
@@ -26,5 +26,7 @@ flows:
     nlu_trigger:
       - intent: session_start
     steps:
+      - action: action_get_customer_info
       - action: utter_session_start
       - action: action_session_start
+      
