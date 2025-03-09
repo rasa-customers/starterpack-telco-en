@@ -1,0 +1,39 @@
+version: "3.1"
+nlu:
+  - intent: Thank_you
+    examples: |
+      - Thanks!
+      - thank you
+      - thanks a lot
+      - thank you so much
+      - thank you a bunch
+      - many thanks
+      - cool, thank you for the info
+      - cheers
+      - I appreciate your help
+      - I appreciate it
+      - much appreciated
+      - You're the best!
+      - perfect, all good
+      - all good
+      - Good to know
+      - That's exactly what I needed
+
+  - intent: bot_challenge
+    examples: |
+      - bot challenge
+      - are you a bot
+      - you are a chatbot
+      - am I talking to a human
+      - who are you
+      - "Are you a bot or a real person?"
+      - Wait, are you human?
+      - You sound like a robot.
+      - Is this a chatbot?
+      - I want to talk to a real person.
+      - Are you AI or a human?
+      - You're not a real person, are you?
+      - Are you automated?
+      - Prove you're not a bot.
+      - Am I chatting with a live agent?
+    

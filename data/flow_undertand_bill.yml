@@ -1,0 +1,34 @@
+flows:
+  understand_bill:
+    if: slots.user_authenticated # the user has to be authenticated in order to access this flow
+    description: This flow allows users to check their latest bill and billing related details details.
+    steps:
+      - collect: bill_date
+        description: get the date and transforme it into this format DD/MM/YYYY. and adapt if the user say yesterday or last month
+      - action: action_verify_bill_by_date
+      - collect: breakdown_cost
+        next:
+          - if: slots.breakdown_cost # it has to be 'slots'
+            then:
+              - action: action_recap_bill
+              - collect: more_bill_details
+                next:
+                  - if: slots.more_bill_details
+                    then:
+                      - action: utter_provide_bill_sources
+                        next: "END"
+                  - else: offer_more_help_section
+
+          - else: offer_more_help_section
+
+      - id: offer_more_help_section # https://rasa.com/docs/rasa-pro/concepts/flows#next-property 
+        collect: offer_more_help
+        next:
+          - if: slots.offer_more_help
+            then:
+              - action: utter_end_conversation
+                next: "END"
+          - else:
+            - action: utter_connect_to_human
+            - action: action_sleep_few_sec
+            - link: pattern_human_handoff
