@@ -35,17 +35,20 @@ Here's a brief description of the directories and files in the project root:
 - Python 3.10 +
 - Point to the LLM provider in the endpoint.yml and config.yml 
   it can be open AI, finetuned model or any other LLM provider see [here](https://rasa.com/docs/rasa-pro/concepts/components/llm-configuration-from-3-11)
-  
+
 ## Set up 
 
 - Clone the repository:
-```git clone <rasa-customers/starterpack-telco-en.git>
-cd <rasa-customers/starterpack-telco-en.gite>
+
+  ```shell
+  git clone <rasa-customers/starterpack-telco-en.git>
+  cd <rasa-customers/starterpack-telco-en.gite>
 ```
 
 - Create and activate a virtual environment, you can use `venv`(built-in Python virtual environment) or any other virtual environment manager.
-```python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+```shell
+  python -m venv venv
+  source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 - Train the Rasa model:
