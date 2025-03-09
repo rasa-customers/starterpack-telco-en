@@ -8,13 +8,13 @@ test_cases:
     - utter: utter_ask_network_speed
     - user: "15 Mpbs"
     - utter: utter_acknowledge_speed_test_not_good
-    - utter: utter_propose_reset_router_solution
-    - utter: utter_ask_reset_router
+    - utter: utter_propose_reboot_router_solution
+    - utter: utter_ask_reboot_router
     - user: "ok"
     - bot: "okay 10 seconds has passed .."
     - utter: utter_run_speed_test_again
     - utter: utter_speed_issue_not_resolved
-    - utter: utter_connect_human_handoff_pattern
+    - utter: utter_confirm_connect_human_handoff_pattern
 
   - test_case: Telco Troubleshooting
     steps:
@@ -36,9 +36,9 @@ test_cases:
         - flow_started: "internet_slow"
         - bot_uttered:
             utter_name: "utter_speed_test_not_good"
-        - flow_started: "reset_router"
+        - flow_started: "reboot_router"
         - bot_uttered:
-            utter_name: "utter_ask_reset_router"
+            utter_name: "utter_ask_reboot_router"
     - user: "Now it's much better, 80 Mbps."
       assertions:
         - bot_uttered:
@@ -47,3 +47,33 @@ test_cases:
       assertions:
         - bot_uttered:
             utter_name: "utter_end_conversation"
+
+  - test_case: restarting router helps
+    steps:
+    - user: "internet slow"
+    - utter: utter_acknowledge_issue
+    - utter: utter_communicate_run_diagnosticss
+    - bot: "Thank you for waiting..."
+    - utter: utter_acknowledge_speed_test_not_good
+    - utter: utter_propose_reboot_router_solution
+    - utter: utter_explain_reboot_router
+    - utter: utter_ask_reboot_router
+    - user: "SetSlots(reboot_router=True)"
+    - utter: utter_communicate_run_diagnosticss
+    - bot: "Thank you for waiting..."
+    - utter: utter_speed_issue_resolved
+
+  - test_case: from out of scope to billing
+    steps:
+    - user: "can you book me a restaurant"
+    - utter: utter_out_of_scope
+    - user: "yes"
+    - utter: utter_clarification_options_rasa
+    - user: "understand my bill"
+    - utter: utter_ask_bill_date
+    - user: "01/01/2025"
+    - bot: "Your bill for 2025-01-01 is $50.50. \nThe average of your past bills is $52.83. \nThis bill is lower than your average by $2.33."
+    - utter: utter_ask_breakdown_cost
+    - user: "SetSlots(breakdown_cost=True)"
+    - bot: "2025-01-01 00:00:00 | 50.5 | Internet"
+    - utter: utter_ask_more_bill_details

@@ -1,0 +1,5 @@
+flows:
+  out_of_scope:
+    description: This flow will explain to the user that the bot can only help when their internet is slow, when they want to check their bill. if the user asks about another topic this flow should be triggered.
+    steps:
+      - action: utter_out_of_scope
