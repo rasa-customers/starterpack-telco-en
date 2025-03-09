@@ -11,6 +11,7 @@ flows:
               - action: utter_acknowledge_speed_test_not_good
               - action: action_sleep_few_sec
               - action: utter_propose_reboot_router_solution
+              - action: action_sleep_few_sec
               - call: reboot_router
                 next:
                   - if: slots.reboot_router
@@ -52,8 +53,7 @@ flows:
               next:
                 - if: slots.confirm_connect_human
                   then:
-                    - noop: true
-                      next: "END"
+                    - link: pattern_human_handoff
                 - else: 
                   - action: action_sleep_few_sec
                   - action: utter_final_help

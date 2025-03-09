@@ -47,6 +47,22 @@ test_cases:
       assertions:
         - bot_uttered:
             utter_name: "utter_end_conversation"
+            
+  - test_case: internet slow after restart it gets better
+    steps:
+    - user: "my internet is slow"
+    - utter: utter_acknowledge_issue
+    - utter: utter_communicate_run_diagnosticss
+    - bot: "Thank you for waiting... ✅ "
+    - utter: utter_acknowledge_speed_test_not_good
+    - utter: utter_propose_reboot_router_solution
+    - utter: utter_explain_reboot_router
+    - utter: utter_ask_reboot_router
+    - user: "SetSlots(reboot_router=True)"
+    - utter: utter_communicate_run_diagnosticss
+    - bot: "Thank you for waiting... ✅ "
+    - utter: utter_speed_issue_resolved
+
 
   - test_case: restarting router helps
     steps:

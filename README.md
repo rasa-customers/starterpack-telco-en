@@ -28,6 +28,9 @@ Here's a brief description of the directories and files in the project root:
   - **credentials.yml**: Contains credentials for various services used by the Rasa assistant (i.e. Chat Widget)
   - **endpoints.yml**: Contains endpoint configurations for the Rasa assistant.
 
+# Diagrams and Conversation Examples
+ ![conversation example](images/conversation_example.png)
+
 # Installation
 
 ## Prerequisites
@@ -42,22 +45,23 @@ Here's a brief description of the directories and files in the project root:
 
   ```shell
   git clone <rasa-customers/starterpack-telco-en.git>
-  cd <rasa-customers/starterpack-telco-en.gite>
-```
+  cd <rasa-customers/starterpack-telco-en>
+  ```
 
-- Create and activate a virtual environment, you can use `venv`(built-in Python virtual environment) or any other virtual environment manager.
+- Create and activate a virtual environment, you can use `venv` (built-in Python virtual environment) or any other virtual environment manager.
+
 ```shell
   python -m venv venv
   source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-- Train the Rasa model:
-`rasa train`
+- Train the Rasa model: `rasa train`
 
 
 # Running the Bot
 - To run the bot you can use `rasa inspect --debug`
 - After any changes made to your data, domain folder or config file you need to retrain the bot running `rasa train` and if changes are made in the custom actions just re-run `rasa inspect --debug`
+- you can also add `e2e test cases` and ras `rasa test` to see how the bot is performing
 
 # Tips
 
@@ -72,4 +76,4 @@ Here's a brief description of the directories and files in the project root:
 Feel free to fork this repo and submit pull requests. Suggestions and improvements are always welcome!
 
 # License
-- This project is licensed under the MIT License.
+- This project is licensed under the MIT? License. ?????
