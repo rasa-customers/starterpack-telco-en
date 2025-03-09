@@ -1,6 +1,6 @@
 version: "3.1"
 nlu:
-  - intent: Thank_you
+  - intent: thank_you
     examples: |
       - Thanks!
       - thank you
@@ -8,16 +8,17 @@ nlu:
       - thank you so much
       - thank you a bunch
       - many thanks
-      - cool, thank you for the info
-      - cheers
-      - I appreciate your help
-      - I appreciate it
-      - much appreciated
-      - You're the best!
-      - perfect, all good
-      - all good
-      - Good to know
-      - That's exactly what I needed
+
+# - cool, thank you for the info
+# - cheers
+# - I appreciate your help
+# - I appreciate it
+# - much appreciated
+# - You're the best!
+# - perfect, all good
+# - all good
+# - Good to know
+# - That's exactly what I needed
 
   - intent: bot_challenge
     examples: |

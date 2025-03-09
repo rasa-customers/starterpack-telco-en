@@ -3,6 +3,7 @@ responses:
   utter_confirm_connect_human_handoff_pattern: # add more information here
     - text: |
             Please hold on while I connect you to our expert 📲  
+      image: "https://cdn-icons-png.flaticon.com/512/1042/1042127.png"
   utter_connect_to_human:
     - text: |
         Let me connect you to our human support managers. They will help you further!

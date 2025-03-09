@@ -28,22 +28,18 @@ responses:
   - text: |      
       Let's reboot your router.
       It helps resolving most issues with speed.  
-
   utter_speed_issue_resolved:
     - text: |
         {network_speed} Mbps, Awesome! 🚀
         If the Internet gets slow again, you can always reset the router.
         If that doesn't help, let me know, and we can try something else. 😊
-  
   utter_speed_issue_not_resolved:
     - text: |
         Your network speed is {network_speed} Mbps.
         That's too low
-
   utter_speed_network_not_issue:
     - text: |
         {network_speed} Mbps sounds right. The speed seems to be in order.
-
   utter_propose_other_solutions:
     - text: |
         The result of my test shows that there is no technical issues between your home and our core network.

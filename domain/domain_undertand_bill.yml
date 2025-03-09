@@ -87,7 +87,7 @@ responses:
 
   utter_provide_bill_sources:
       - text: |
-          I've provided a quick summary of your bill. 
+          I've provided a quick summary of your bill ⤵️
           For full details, please log in to your account and check your billing history here:
-          https://companyName/account/your-bills
+          https://companyName/account/your-bills 🔗
 

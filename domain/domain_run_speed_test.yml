@@ -3,6 +3,7 @@ slots:
     type: text
     mappings:
       - type: from_llm
+      
   run_speed_test:
     type: bool
     mappings:

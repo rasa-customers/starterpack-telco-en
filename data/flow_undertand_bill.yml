@@ -1,7 +1,7 @@
 flows:
   understand_bill:
     if: slots.user_authenticated # the user has to be authenticated in order to access this flow
-    description: This flow allows users to check their latest bill and billing related details details.
+    description: This flow allows users to check their bill and billing related details.
     steps:
       - collect: bill_date
         description: get the date and transforme it into this format DD/MM/YYYY. and adapt if the user say yesterday or last month
@@ -32,3 +32,20 @@ flows:
             - action: utter_connect_to_human
             - action: action_sleep_few_sec
             - link: pattern_human_handoff
+# =====================================================================
+
+
+#         next:
+#           - if: slots.wants_more_details
+#             then:
+#               - action: action_provide_current_balance
+#               - action: utter_ask_anything_else
+#                 next: END
+#                 # next:
+#                 #   - if: slots.anything_else
+#                 #   - else:
+#                 #       - action: utter_goodbye
+#                 #         next: END
+#           - else:
+#             - noop: true
+#               next: "END"
