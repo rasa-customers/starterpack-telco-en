@@ -99,8 +99,11 @@ Here's a brief description of the directories and files in the project root:
   - Always review the prompt
   - search for `action_list` to see the command that was predicted by CALM, this will help you debug
     For instance, it can be `action_list=StartFlow(understand_bill)` or `action_list=SetSlot(bill_date, 2025-01-01)`
-- search for `commands=` 
-  For instance `commands=[StartFlowCommand(flow='bot_challenge')]`
+  - search for `commands=` 
+    For instance `commands=[StartFlowCommand(flow='bot_challenge')]`
+  - check the **tracker state** in the **inspector view**
+- Start writting e2e test cases right when you start writting your flows, you can start by copying what we have in **inspector view** in the **End-2end test** section.
+
 
 # Contributing
 Feel free to fork this repo and submit pull requests. Suggestions and improvements are always welcome!
