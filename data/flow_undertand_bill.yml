@@ -17,11 +17,11 @@ flows:
                     then:
                       - action: utter_provide_bill_sources
                         next: "END"
-                  - else: offer_more_help_section
+                  - else: offer_more_help_section # this will call "offer_more_help_section" section
 
           - else: offer_more_help_section
 
-      - id: offer_more_help_section # https://rasa.com/docs/rasa-pro/concepts/flows#next-property 
+      - id: offer_more_help_section # This will help avoid re-writting the same piece of code, this way it can be re-used
         collect: offer_more_help
         next:
           - if: slots.offer_more_help
@@ -32,20 +32,3 @@ flows:
             - action: utter_connect_to_human
             - action: action_sleep_few_sec
             - link: pattern_human_handoff
-# =====================================================================
-
-
-#         next:
-#           - if: slots.wants_more_details
-#             then:
-#               - action: action_provide_current_balance
-#               - action: utter_ask_anything_else
-#                 next: END
-#                 # next:
-#                 #   - if: slots.anything_else
-#                 #   - else:
-#                 #       - action: utter_goodbye
-#                 #         next: END
-#           - else:
-#             - noop: true
-#               next: "END"

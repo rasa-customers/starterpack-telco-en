@@ -8,12 +8,7 @@ pipeline:
     min_ngram: 1
     max_ngram: 4
   - name: LogisticRegressionClassifier
-    max_iter: 500  # Increase this value
-    # solver: lbfgs
-    # tol: 0.0001
-    # random_state: 42
-    # ranking_length: 10
-  - name: CRFEntityExtractor
+    max_iter: 500 
   - name: NLUCommandAdapter
     user_input:
       max_characters: 420

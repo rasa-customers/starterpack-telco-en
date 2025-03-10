@@ -1,7 +1,7 @@
 flows:
   bot_challenge:
     description: This flow clarifies that the user is talking to a chatbot, when the user ask if they are talking to a chatbot or a human
-    nlu_trigger: # https://rasa.com/docs/rasa-pro/concepts/starting-flows#nlu-trigger
+    nlu_trigger: # This will will start the flow based on the predicted Intent
       - intent:
           name: bot_challenge
           confidence_threshold: 0.9
