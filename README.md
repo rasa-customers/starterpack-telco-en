@@ -95,7 +95,7 @@ Here's a brief description of the directories and files in the project root:
  - **Documents** : have general information on what is a router how to start it ... this can be triggered at any point of the conversation and then the assistant will go back to finish the flow
  - **Domain** : contains all bot answeres, details/definition about all slots and mention the custom actions
   - **Responses** : I added simple once, one with buttons and others with images
-  - ***Slots** : different slot type and mapping
+  - **Slots** : different slot type and mapping
     - **type** : Float, text, bool
     - **mappings** : from_llm, and custom
  - **Images** : These images are used in the README
