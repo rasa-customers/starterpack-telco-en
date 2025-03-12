@@ -1,5 +1,6 @@
 flows:
   reboot_router: # only reboot/restart the router
+    if: False
     description: Help user reboot and restart their router, the user will be doing this action
     steps:
       - action: utter_explain_reboot_router

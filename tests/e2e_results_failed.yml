@@ -1,0 +1,62 @@
+test_results:
+
+- name: billing test case
+  pass_status: false
+  expected_steps:
+  - user: "I would like to check my bill"
+    assertions:
+    - flow_started: "understand_bill"
+    - bot_uttered:
+        utter_name: utter_ask_bill_month
+        text_matches: Alright. Could you please specify the month? 📅
+  - user: "January"
+    assertions:
+    - slot_was_set:
+      - name: "bill_month"
+        value: "January"
+    - action_executed: action_verify_bill_by_date
+    - bot_uttered:
+        utter_name: utter_ask_breakdown_cost
+        text_matches: Would you like to see the breakdown of the costs?
+        buttons:
+        - title: "Yes, please"
+          payload: "SetSlots(breakdown_cost=True)"
+        - title: "No, thank you"
+          payload: "SetSlots(breakdown_cost=False)"
+  - user: "No"
+    assertions:
+    - bot_uttered:
+        utter_name: utter_ask_offer_more_help
+        text_matches: Did I manage to provide all the information you need?
+        buttons:
+        - title: "Yes, thank you"
+          payload: "SetSlots(offer_more_help=True)"
+        - title: "No, I need further help"
+          payload: "SetSlots(offer_more_help=False)"
+  - user: "No"
+    assertions:
+    - slot_was_set:
+      - name: "offer_more_help"
+        value: true
+    - bot_uttered:
+        utter_name: utter_end_conversation
+  error_path: tests/e2e_test_cases/billing_test_cases.yml:10
+  assertion_failure:
+    assertion:
+      utter_name: utter_ask_bill_month
+      text_matches: Alright. Could you please specify the month? 📅
+      buttons: []
+      line: 10
+      type: bot_uttered
+    error_message: Bot did not utter any response which matches the provided text pattern 'Alright. Could you please specify the month? 📅'.
+    actual_events_transcript:
+    - 'ActionExecuted(action: action_session_start, policy: None, confidence: 1.0)'
+    - 'SessionStarted(type_name: session_started)'
+    - 'ActionExecuted(action: action_listen, policy: None, confidence: None)'
+    - UserUttered('I would like to check my bill', 'None', [])
+    - 'FlowStarted(flow: understand_bill)'
+    - 'FlowStarted(flow: pattern_collect_information)'
+    - 'ActionExecuted(action: action_run_slot_rejections, policy: FlowPolicy, confidence: 1.0)'
+    - 'ActionExecuted(action: utter_ask_bill_month, policy: FlowPolicy, confidence: 1.0)'
+    - "BotUttered('Alright. Could you please specify the month? \U0001F4C5\n', {\"elements\": null, \"quick_replies\": null, \"buttons\": null, \"attachment\": null, \"image\": null, \"custom\": null}, {\"active_flow\": \"understand_bill\", \"step_id\": \"understand_bill_0_collect_bill_month\", \"utter_action\": \"utter_ask_bill_month\", \"utter_source\": \"ContextualResponseRephraser\", \"domain_ground_truth\": [\"Alright. Could you please specify the month? \\ud83d\\udcc5\\n\"], \"model_id\": \"1981414c52ae4975af412e45e179afa6\", \"assistant_id\": \"20250226-101111-delicious-dimension\"}, 1741784686.553452)"
+    - 'ActionExecuted(action: action_listen, policy: FlowPolicy, confidence: 1.0)'

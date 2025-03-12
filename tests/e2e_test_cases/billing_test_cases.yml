@@ -1,0 +1,43 @@
+        #  - slot_was_set:
+        #     - name: "user_authenticated"
+        #       value: "True"
+test_cases:
+  - test_case: billing test case
+    steps:
+    - user: "I would like to check my bill"
+      assertions:
+        - flow_started: "understand_bill"
+        - bot_uttered:
+            utter_name: utter_ask_bill_month
+            text_matches: Alright. Could you please specify the month? 📅
+    - user: "January"
+      assertions:
+        - slot_was_set:
+            - name: "bill_month"
+              value: "January"
+        - action_executed: action_verify_bill_by_date
+        - bot_uttered:
+            utter_name: utter_ask_breakdown_cost
+            text_matches: Would you like to see the breakdown of the costs?
+            buttons:
+              - title: "Yes, please"
+                payload: "SetSlots(breakdown_cost=True)"
+              - title: "No, thank you"
+                payload: "SetSlots(breakdown_cost=False)" 
+    - user: "No" 
+      assertions:
+        - bot_uttered:
+            utter_name: utter_ask_offer_more_help
+            text_matches: Did I manage to provide all the information you need? 
+            buttons:
+              - title: "Yes, thank you"
+                payload: "SetSlots(offer_more_help=True)"
+              - title: "No, I need further help"
+                payload: "SetSlots(offer_more_help=False)"
+    - user: "No" 
+      assertions:
+        - slot_was_set:
+            - name: "offer_more_help"
+              value: True
+        - bot_uttered:
+            utter_name: utter_end_conversation

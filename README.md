@@ -137,18 +137,26 @@ Here's a brief description of the directories and files in the project root:
 # Running the Bot
 - To run the bot you can use `rasa inspect --debug`
 - After any changes made to your data, domain folder or config file you need to retrain the bot running `rasa train` and if changes are made in the custom actions just re-run `rasa inspect --debug`
-- you can also add `e2e test cases` and ras `rasa test` to see how the bot is performing
+- after adding changes, make sure to add `e2e test cases`, to do so
+  - set `RASA_PRO_BETA_E2E_ASSERTIONS=true` environment variable before
+running the command.
+  - install `pip install mlflow` when you use an LLM to generate the answer, when usung enterprise search.
+  - run `rasa test e2e <add path to the test folder> -o` to see how the bot is performing, `-o` to get the results
+
 
 # Tips
-
-- when you are trying to debug look for these sections
-  - Always review the prompt
+- Check our [docs](https://rasa.com/docs/reference/primitives/) to understand all Rasa primitives:
+  - Get familiar with all flow properties, patterns, responses
+- Start writting e2e test cases right when you start writting your flows, you can start by copying what we have in **inspector view** in the **End-2end test** section.
+- when you are trying to debug look for these sections in your logs
+  - always review the prompt in the logs to make sure the right flows and slots are available and check the conversation history to better understand the bot's behavior
   - search for `action_list` to see the command that was predicted by CALM, this will help you debug
     For instance, it can be `action_list=StartFlow(understand_bill)` or `action_list=SetSlot(bill_month, 2025-01-01)`
   - search for `commands=` 
     For instance `commands=[StartFlowCommand(flow='bot_challenge')]`
   - check the **tracker state** in the **inspector view**
-- Start writting e2e test cases right when you start writting your flows, you can start by copying what we have in **inspector view** in the **End-2end test** section.
+  - add `logging.info` to you custom actions to get more visibility.
+
 
 # Next Steps
 - Identify the use cases, you would like to add to this assistant.
@@ -166,4 +174,4 @@ Here's a brief description of the directories and files in the project root:
 Feel free to fork this repo and submit pull requests. Suggestions and improvements are always welcome!
 
 # License
-- This project is licensed under the MIT? License. ?????
+- This project is licensed under the Apache 2.0 License, allowing modification, distribution, and usage with proper attribution.

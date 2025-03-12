@@ -2,3 +2,4 @@
 models
 actions/__init__.py
 actions/__pycache__/
+mlruns/
