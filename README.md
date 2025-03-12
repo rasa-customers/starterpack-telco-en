@@ -25,20 +25,65 @@ Here's a brief description of the directories and files in the project root:
   - **README.md**: The file you're currently reading!
   - **actions:** Contains Python scripts defining custom actions for the Rasa assistant.
   - **csvs:** Contains csv file that are used to mimic the behavior of connecting to a database to get customer information.
-  - **data:** Contains flow definitions for the assistant and NLY folder, for flows to be triggered by some intents.
+  - **data:** Contains flow definitions for the assistant and NLY folder. if needed to have flows to be triggered by some intents add the nlu file with examples for intents.
   - **docs:** Contains sample documents for Enterprise Search.
   - **domain:** Contains domain files for the assistant.
   - **prompts**: Contains Jinja2 template files for generating prompts.
   - **tests:** Contains end-to-end test scenarios for the assistant where each subdirectory reflects a suite of tests (i.e. happy path).
-  - **Config:** Contains multiple configuration components for the assistant (i.e. different language models and settings). since Intents are added then we need the NLU pipeline for it(tokennizer, featurizer, intent classifier ..) and **NLUCommandAdaptor** will be the component that will start a flow based on the intent prediction.
+  - **Config:** Contains multiple configuration components for the assistant (i.e. different language models and settings). if Intents are needed then we need the NLU pipeline for it(tokennizer, featurizer, intent classifier ..) and **NLUCommandAdaptor** will be the component that will start a flow based on the intent prediction.
   - **Credentials**: Contains credentials for various services used by the Rasa assistant (i.e. Chat Widget)
   - **Endpoints**: Contains endpoint configurations for the Rasa assistant. 
     - How to run the action server is added
     - How to call NLG server
     - How to define the model group
 
-# Conversation Examples
+# Conversation design
  ![conversation example](images/conversation_example.png)
+# Conversation example
+##  **First example**:
+
+  - **Bot**: Hey Serena 👋
+        I am your virtual AI assistant that can check your bills or resolve issues with Internet speed.
+        How may I help you?
+  - **User**: My internet is slow
+  - **Bot**: <BR>
+            I see. <BR>
+            Let me try identify the root cause of the issue you are facing.<BR>
+            I will run a network diagnostics for you 🛜 <BR>
+            Wait a moment please... <BR>
+            Thank you for waiting... ✅ <BR>
+            Your network download speed is 53 Mbps. <BR>
+            That's definitely not good. <BR>
+            Let's reboot your router.
+            It helps resolving most issues with speed.
+            Please turn the router off, wait 10 seconds and turn it back on.
+            Let me know when you are done!
+  - **User**: Done
+  - **Bot**: <BR>
+            I will run a network diagnostics for you 🛜 <BR>
+            Wait a moment please... <BR>
+            Thank you for waiting... ✅ <BR>
+            111 Mbps, Awesome! 🚀 <BR>
+            If the Internet gets slow again, you can always reset the router. <BR>
+            If that doesn't help, let me know, and we can try something else. 😊 <BR>
+
+  **Second example**:
+  - **User**: can you tell me my expenses? <BR>
+  - **Bot**: <BR> 
+            Alright. Could you please specify the month? 📅
+  - **User**: Feb
+  - **Bot**: <BR>
+            Your bill for February 2025 is $55.00.<BR>
+            The average of your past bills is $88.50.<BR>
+            This bill is lower than your average by $33.50.<BR>
+            Would you like to see the breakdown of the costs?
+  - **User**: Nope
+  - **Bot**: Did I manage to provide all the information you need?
+  - **User**: No
+  - **Bot**: <BR>
+            Let me connect you to our human support managers. They will help you further! <BR>
+          Please hold on while I connect you to our expert 📲 <BR>
+
 
 # Features and bot content explanation.
  You can find in this bot
@@ -46,8 +91,6 @@ Here's a brief description of the directories and files in the project root:
  - **RAG** : enterprise search if the ask knowledge base questions
  - **Data**
   - **Flows** : are build to handle user questions about "internet is slow" or "check their bill". Different features are used : calling or linking a flow, branching on a slot value.
-  - **NLU** : Some flows will be triggered by NLU and if the confidence level is not too high then we can rely on our LLM. This usually used when we have a good set of examples for generic intents, like greet/goodbye, bot challenge ...
-  You can use `nlu_trigger`
   - **Patterns** : Over-ride some patterns, to change the behavior. make sure to add the same patterns name as the originals.
  - **Documents** : have general information on what is a router how to start it ... this can be triggered at any point of the conversation and then the assistant will go back to finish the flow
  - **Domain** : contains all bot answeres, details/definition about all slots and mention the custom actions
@@ -99,12 +142,23 @@ Here's a brief description of the directories and files in the project root:
 - when you are trying to debug look for these sections
   - Always review the prompt
   - search for `action_list` to see the command that was predicted by CALM, this will help you debug
-    For instance, it can be `action_list=StartFlow(understand_bill)` or `action_list=SetSlot(bill_date, 2025-01-01)`
+    For instance, it can be `action_list=StartFlow(understand_bill)` or `action_list=SetSlot(bill_month, 2025-01-01)`
   - search for `commands=` 
     For instance `commands=[StartFlowCommand(flow='bot_challenge')]`
   - check the **tracker state** in the **inspector view**
 - Start writting e2e test cases right when you start writting your flows, you can start by copying what we have in **inspector view** in the **End-2end test** section.
 
+# Next Steps
+- Identify the use cases, you would like to add to this assistant.
+  - it can be improving the existing two or add new ones
+    Examples:
+    - Create and track support tickets for unresolved issues.
+    - Notify users about due dates and payment confirmations.
+    - Detect suspicious account activity and alert customers.
+- Create diagrams that illustartes the conversation flow, A conversation designer will be a perfect expert to rely on to accoumplish this step.
+- Start building the flows and adding e2e test cases
+- Share the first versions with your colleague to test and provide feedback.
+- Improve, test, re share 🔁
 
 # Contributing
 Feel free to fork this repo and submit pull requests. Suggestions and improvements are always welcome!
