@@ -4,7 +4,6 @@ from rasa_sdk.events import SlotSet
 from datetime import datetime
 import logging
 
-
 class ActionVerifyBillByDate(Action):
     def name(self):
         return "action_verify_bill_by_date"
@@ -30,22 +29,14 @@ class ActionVerifyBillByDate(Action):
         # Load CSV file with billing data
         file_path = "bills.csv"  # Update with the correct path
         df = pd.read_csv("csvs/billing.csv")
-        
-        # Example CSV format:
-        # customer_id,date,amount
-        # 123,2025-01-01,50.00
-        # 123,2025-02-01,55.00
-        # 123,2025-03-01,53.00
-        # 456,2025-01-15,40.00
-        
+
         # Get customer ID and date from slots
         customer_id = tracker.get_slot("customer_id")
         bill_month = tracker.get_slot("bill_month")
-        logging.info(f"This is an info message: bill_month RAW: {bill_month}")
-        #raise Exception("Something went wrong!")
+        #logging.info(f"This is an info message: bill_month : {bill_month}")
 
         bill_date = ActionVerifyBillByDate.text_to_date(bill_month)
-        logging.info(f"This is an info message: bill_month after transformation: {bill_date}")
+        #logging.info(f"This is an info message: bill_month after transformation: {bill_date}")
         
         if not customer_id:
             dispatcher.utter_message("I couldn't find your customer ID. Please provide it.")
