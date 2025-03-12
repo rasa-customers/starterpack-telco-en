@@ -25,13 +25,13 @@ responses:
     - text: |
         Glad, I helped ✨
         Have a nice day! 
-  utter_bot_challenge:
-  - text: |
-      I'm an AI assistant designed to assist you quickly and efficiently. 
-      If you ever need to speak with a human agent, just let me know!
-  
-  utter_out_of_scope:
+
+  utter_fallback:
     - text: |
         I appreciate your question! 
         That's a bit outside my expertise, but I'm here to help if your internet is slow or if you need help understanding your bill.
         Would you like assistance with that?
+  utter_bot_challenge:
+  - text: |
+      I'm an AI assistant designed to assist you quickly and efficiently. 
+      If you ever need to speak with a human agent, just let me know!

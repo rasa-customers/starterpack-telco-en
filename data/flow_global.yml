@@ -1,19 +1,18 @@
 flows:
   bot_challenge:
     description: This flow clarifies that the user is talking to a chatbot, when the user ask if they are talking to a chatbot or a human
-    nlu_trigger: # This will will start the flow based on the predicted Intent
-      - intent:
-          name: bot_challenge
-          confidence_threshold: 0.9
     steps:
       - action: utter_bot_challenge
 
   Thank_you:
     description: thank the user back when they thank you or say goodbye
-    nlu_trigger:
-      - intent: 
-          name: thank_you
-          confidence_threshold: 0.9 # Threshold value optional
     steps:
         - action: utter_end_conversation
 
+  utter_fallback:
+    description: |
+        This will be a fallbck flow. when for the user input that is not related to the purpose of the assistant. It should not respond to greetings or goodbyes or anything defined in another flow.
+    steps:
+      - action: utter_fallback
+# This flow will explain to the user that the bot can only help when their internet is slow, when they want to check their bill. 
+# if the user asks about another topic this flow should be triggered.

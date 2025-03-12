@@ -1,17 +1,6 @@
 recipe: default.v1
 language: en
 pipeline:
-  - name: WhitespaceTokenizer
-  - name: CountVectorsFeaturizer
-  - name: CountVectorsFeaturizer
-    analyzer: char_wb
-    min_ngram: 1
-    max_ngram: 4
-  - name: LogisticRegressionClassifier
-    max_iter: 500 
-  - name: NLUCommandAdapter
-    user_input:
-      max_characters: 420
   - name: SingleStepLLMCommandGenerator
     llm:
       model_group: openai-direct-gpt-4

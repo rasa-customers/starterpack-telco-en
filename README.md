@@ -84,6 +84,7 @@ Here's a brief description of the directories and files in the project root:
   python -m venv venv
   source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
+  Make sure this environment is always active when you are testing or building the assistant.
 
 - Train the Rasa model: `rasa train`
 

@@ -4,10 +4,23 @@ actions:
   - action_recap_bill
 
 slots:
-  bill_date:
-    type: text
+  bill_month:
+    type: categorical
     mappings:
       - type: from_llm
+    values:
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
 
   bill_amount:
     type: float
@@ -53,9 +66,9 @@ responses:
     - text: |
         Can you please provide me your customer id
 
-  utter_ask_bill_date:
+  utter_ask_bill_month:
     - text: |
-        Could you please provide the date for your bill in the format DD/MM/YYYY? 📅
+        Alright. Could you please specify the month? 📅
 
   utter_ask_breakdown_cost:
     - text: |

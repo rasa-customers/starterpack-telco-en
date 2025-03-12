@@ -3,8 +3,9 @@ flows:
     if: slots.user_authenticated # the user has to be authenticated in order to access this flow
     description: This flow allows users to check their bill and billing related details.
     steps:
-      - collect: bill_date
-        description: get the date and transforme it into this format DD/MM/YYYY. and adapt if the user say yesterday or last month
+      - collect: bill_month
+        description: this slot is a month so they user can say Jan but we need to store it as January.
+        ask_before_filling: False
       - action: action_verify_bill_by_date
       - collect: breakdown_cost
         next:
