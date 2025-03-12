@@ -90,8 +90,8 @@ Here's a brief description of the directories and files in the project root:
  - **Actions** : custom actions, mimic getting information from a DB, either adding it to the session start or afterwards in the conversation. I mimic this behavior by getting information about customers from two CSVs.
  - **RAG** : enterprise search if the ask knowledge base questions
  - **Data**
-  - **Flows** : are build to handle user questions about "internet is slow" or "check their bill". Different features are used : calling or linking a flow, branching on a slot value.
-  - **Patterns** : Over-ride some patterns, to change the behavior. make sure to add the same patterns name as the originals.
+    - **Flows** : are build to handle user questions about "internet is slow" or "check their bill". Different features are used : calling or linking a flow, branching on a slot value.
+    - **Patterns** : Over-ride some patterns, to change the behavior. make sure to add the same patterns name as the originals.
  - **Documents** : have general information on what is a router how to start it ... this can be triggered at any point of the conversation and then the assistant will go back to finish the flow
  - **Domain** : contains all bot answeres, details/definition about all slots and mention the custom actions
   - **Responses** : I added simple once, one with buttons and others with images
