@@ -107,7 +107,7 @@ Here's a brief description of the directories and files in the project root:
 
 
 # Installation
-
+You can find [here](https://learning.rasa.com/pre-requisites/pre-requisites/) our Rasa enabelment and step by step guide on how to install Rasa.
 ## Prerequisites
 - Rasa licence for 3.11 +
 - Python 3.10 +
