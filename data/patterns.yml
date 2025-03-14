@@ -1,11 +1,11 @@
 flows:
 
-  pattern_search:
-    description: Flow for handling how to run a speed test
+  pattern_search: # This is a patter that triggered if we have a knowledge base question so we rely on the description we have for SearchAndReply() command
+    description: Flow for handling how to run a speed test ## This is a description just a place holder 
+                                                            #if you want to change it you need to update the command description in the prompt
     name: pattern search
     steps:
       - action: action_trigger_search
-
 
   pattern_human_handoff:
     description: Conversation repair flow for switching users to a human agent if their request can't be handled
@@ -13,14 +13,14 @@ flows:
     steps:
       - action: utter_confirm_connect_human_handoff_pattern
   
-  pattern_completed:
+  pattern_completed: # this a patters that is triggered at the end of every flow
     description: all flows have been completed and there is nothing else to be done
     name: pattern completed
     steps:
-      - noop: True
+      - noop: True # this means no operation and when this command is detected CALM won't do any actions
         next: END
 
-  pattern_session_start:
+  pattern_session_start: # this is a pattern that will be triggered in the begining of the session
     description: Flow for starting the conversation
     name: pattern session start
     nlu_trigger:

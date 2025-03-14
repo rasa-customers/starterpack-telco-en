@@ -57,7 +57,8 @@ flows:
               next:
                 - if: slots.confirm_connect_human
                   then:
-                    - link: pattern_human_handoff
+                    - noop: true
+                      next: "END"
                 - else: 
                   - action: action_sleep_few_sec
                   - action: utter_final_help
