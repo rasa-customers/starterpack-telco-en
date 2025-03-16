@@ -14,7 +14,7 @@ class ActionSessionStart(Action):
             domain: dict) -> list:
         # get the call metadata from the tracker
         metadata = tracker.get_slot("session_started_metadata")
-        # set appropriate slots
+        # set appropriate slots here if that is needed usually the customer information
         
         return [] 
 class ActionSleepAndRespond(Action):
