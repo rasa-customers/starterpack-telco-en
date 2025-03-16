@@ -53,12 +53,11 @@ flows:
             - action: action_sleep_few_sec
             - action: utter_propose_other_solutions
             - action: action_sleep_few_sec
-            - collect: confirm_connect_human
+            - collect: more_help_needed
               next:
-                - if: slots.confirm_connect_human
+                - if: slots.more_help_needed
                   then:
-                    - noop: true
-                      next: "END"
+                    - link: pattern_human_handoff
                 - else: 
                   - action: action_sleep_few_sec
                   - action: utter_final_help

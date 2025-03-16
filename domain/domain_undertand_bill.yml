@@ -84,9 +84,9 @@ responses:
         Did I manage to provide all the information you need? 
       buttons:
         - title: "Yes, thank you"
-          payload: "SetSlots(offer_more_help=True)"
-        - title: "No, I need further help"
           payload: "SetSlots(offer_more_help=False)"
+        - title: "No, I need further help"
+          payload: "SetSlots(offer_more_help=True)"
 
   utter_ask_more_bill_details:
       - text: |

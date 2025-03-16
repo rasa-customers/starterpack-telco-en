@@ -4,7 +4,7 @@ slots:
     mappings:
       - type: custom
         action: actions_run_speed_test
-  confirm_connect_human:
+  more_help_needed:
     type: bool
     mappings:
       - type: from_llm
@@ -46,15 +46,15 @@ responses:
         The result of my test shows that there is no technical issues between your home and our core network.
         However, if you're still experiencing slow browsing or buffering,it could be due to network congestion, too many connected devices, or Wi-Fi interference. 
         Try moving closer to your router or disconnecting unused devices. 
-  utter_ask_confirm_connect_human:
+  utter_ask_more_help_needed:
     - text: |      
         I can connect you to a human agent for further assistance. 
         Would you like me to do that now? 
       buttons:
         - title: "Yes, please"
-          payload: "SetSlots(confirm_connect_human=True)"
+          payload: "SetSlots(more_help_needed=True)"
         - title: "Not now"
-          payload: "SetSlots(confirm_connect_human=False)"  
+          payload: "SetSlots(more_help_needed=False)"  
   utter_final_help:
     - text: |
         No problem! If you need help later, feel free to ask.

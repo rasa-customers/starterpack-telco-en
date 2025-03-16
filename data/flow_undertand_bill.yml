@@ -9,7 +9,7 @@ flows:
       - action: action_verify_bill_by_date
       - collect: breakdown_cost
         next:
-          - if: slots.breakdown_cost # it has to be 'slots'
+          - if: slots.breakdown_cost # it has to be 'slots', this means breakdown_cost is True
             then:
               - action: action_recap_bill
               - collect: more_bill_details
@@ -27,9 +27,11 @@ flows:
         next:
           - if: slots.offer_more_help
             then:
-              - action: utter_end_conversation
-                next: "END"
+              - action: utter_connect_to_human
+              - action: action_sleep_few_sec
+              -  link: pattern_human_handoff
+            
           - else:
-            - action: utter_connect_to_human
-            - action: action_sleep_few_sec
-            - link: pattern_human_handoff
+            - action: utter_end_conversation
+              next: "END"
+            

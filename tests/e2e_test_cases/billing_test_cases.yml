@@ -1,15 +1,18 @@
-        #  - slot_was_set:
-        #     - name: "user_authenticated"
-        #       value: "True"
+fixtures:
+  - customer_information: # name of the fixture must be provided and be unique
+      - customer_id: "124" # every fixture can contain multiple slot key-value pairs
+                          # This will be helpful when to se user information
+
 test_cases:
-  - test_case: billing test case
+  - test_case: billing happy path
+    fixtures:
+      - customer_information
     steps:
     - user: "I would like to check my bill"
       assertions:
         - flow_started: "understand_bill"
         - bot_uttered:
             utter_name: utter_ask_bill_month
-            text_matches: Alright. Could you please specify the month? 📅
     - user: "January"
       assertions:
         - slot_was_set:
@@ -24,20 +27,42 @@ test_cases:
                 payload: "SetSlots(breakdown_cost=True)"
               - title: "No, thank you"
                 payload: "SetSlots(breakdown_cost=False)" 
-    - user: "No" 
+    - user: "Yes, please" 
+      assertions:
+        - action_executed: action_recap_bill
+        - bot_uttered:
+            utter_name: utter_ask_more_bill_details
+    - user: "SetSlots(more_bill_details=True)"
+      assertions:
+        - bot_uttered:
+            utter_name: utter_provide_bill_sources
+
+  - test_case: billing unhappy path
+    steps:
+    - user: "I would like to check my bill"
+      assertions:
+        - flow_started: "understand_bill"
+        - bot_uttered:
+            utter_name: utter_ask_bill_month
+    - user: "February"
+      assertions:
+        - slot_was_set:
+            - name: "bill_month"
+              value: "February"
+        - action_executed: action_verify_bill_by_date
+        - bot_uttered:
+            utter_name: utter_ask_breakdown_cost
+            text_matches: Would you like to see the breakdown of the costs?
+            buttons:
+              - title: "Yes, please"
+                payload: "SetSlots(breakdown_cost=True)"
+              - title: "No, thank you"
+                payload: "SetSlots(breakdown_cost=False)" 
+    - user: "SetSlots(breakdown_cost=False)" 
       assertions:
         - bot_uttered:
             utter_name: utter_ask_offer_more_help
-            text_matches: Did I manage to provide all the information you need? 
-            buttons:
-              - title: "Yes, thank you"
-                payload: "SetSlots(offer_more_help=True)"
-              - title: "No, I need further help"
-                payload: "SetSlots(offer_more_help=False)"
-    - user: "No" 
+    - user: "SetSlots(offer_more_help=False)"
       assertions:
-        - slot_was_set:
-            - name: "offer_more_help"
-              value: True
         - bot_uttered:
             utter_name: utter_end_conversation
