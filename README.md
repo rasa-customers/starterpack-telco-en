@@ -149,7 +149,7 @@ Here's a brief description of the directories and files in the project root:
     - **mappings** : from_llm, and custom
  - **Images** : These images are used in the README
  - **Prompts** : This prompt looks like the original, I just remove the **CHITCHAT** command and added details for the `SearchAndReply()`. in the config you can see that I pointed to use this prompt.
- - **Tests** : this is a good way to test the bot's capabilities and ensure the same behavior when doing changes and updates. With Assertions we can track commands and when slots are set.
+ - **Tests** : this is a good way to test the bot's capabilities and ensure the same behavior when doing changes and updates. With Assertions we can track commands and when slots are set. The folder contains 7 test cases, this can help you better understand how the bot functions.
  - **Config**: We have two sections, the pipeline and the policies
      - the pipeline we have `SingleStepLLMCommandGenerator` that will convert user messages into commands, we add the LLM we want to use here
      - the policies: two policies are used in this assistant the `FlowPolicy` and the `EnterpriseSearchPolicy`
