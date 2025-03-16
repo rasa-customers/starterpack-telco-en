@@ -51,7 +51,7 @@ slots:
       mappings:
         - type: from_llm
 
-  offer_more_help:
+  issue_solved:
       type: bool
       mappings:
         - type: from_llm
@@ -76,17 +76,17 @@ responses:
       buttons:
         - title: "Yes, please"
           payload: "SetSlots(breakdown_cost=True)"
-        - title: "No, thank you"
+        - title: "No, all good"
           payload: "SetSlots(breakdown_cost=False)" 
 
-  utter_ask_offer_more_help:
+  utter_ask_issue_solved:
     - text: |
         Did I manage to provide all the information you need? 
       buttons:
-        - title: "Yes, thank you"
-          payload: "SetSlots(offer_more_help=False)"
+        - title: "Yes, all good"
+          payload: "SetSlots(issue_solved=True)"
         - title: "No, I need further help"
-          payload: "SetSlots(offer_more_help=True)"
+          payload: "SetSlots(issue_solved=False)"
 
   utter_ask_more_bill_details:
       - text: |

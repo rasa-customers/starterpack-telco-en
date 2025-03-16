@@ -4,12 +4,7 @@ flows:
     steps:
       - action: utter_bot_challenge
 
-  Thank_you:
-    description: thank the user back when they thank you or say goodbye
-    steps:
-        - action: utter_end_conversation
-
-  utter_fallback:
+  fallback:
     description: |
         This will be a fallbck flow. when for the user input that is not related to the purpose of the assistant. It should not respond to greetings or goodbyes or anything defined in another flow.
     steps:

@@ -1,8 +1,6 @@
 version: "3.1"
-intents:
-- thank_you
-- bot_challenge
-slots:
+
+slots: # list all you slots, it can be in different files per use case for better structure
   customer_id:
     type: text
     mappings:

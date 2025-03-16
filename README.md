@@ -40,7 +40,7 @@ Here's a brief description of the directories and files in the project root:
 # Conversation design
  ![conversation example](images/conversation_example.png)
 # Conversation example
-##  **First example**:
+##  **First example**: happy path with solving "internet slow" issue
 
   - **Bot**: Hey Serena 👋
         I am your virtual AI assistant that can check your bills or resolve issues with Internet speed.
@@ -67,7 +67,7 @@ Here's a brief description of the directories and files in the project root:
             If the Internet gets slow again, you can always reset the router. <BR>
             If that doesn't help, let me know, and we can try something else. 😊 <BR>
 
-  **Second example**:
+##  **Second example**: Providing human agent help when needed in the "billing" use case
   - **User**: can you tell me my expenses? <BR>
   - **Bot**: <BR> 
             Alright. Could you please specify the month? 📅
@@ -84,6 +84,55 @@ Here's a brief description of the directories and files in the project root:
             Let me connect you to our human support managers. They will help you further! <BR>
           Please hold on while I connect you to our expert 📲 <BR>
 
+##  **Third example**: Intervening and asking a knowledge questions base during a conversation
+  - **User**:  my internet is so slow lately
+  - **Bot**: <BR>
+          I see.
+          Let me try identify the root cause of the issue you are facing.<BR>
+          I will run a network diagnostics for you 🛜<BR>
+          Wait a moment please... <BR>
+          .. 10 second pass ..  <BR>
+          Thank you for waiting... ✅   <BR>
+          102 Mbps sounds right. The speed seems to be in order.<BR>
+          The result of my test shows that there is no technical issues between your home and our core network.<BR>
+          However, if you're still experiencing slow browsing or buffering,it could be due to network congestion, too many connected devices, or Wi-Fi interference.<BR>
+          Try moving closer to your router or disconnecting unused devices.<BR>
+          I can connect you to a human agent for further assistance. <BR>
+          Would you like me to do that now?<BR>
+  - **User**: "what is a speed test"
+  - **Bot**: <BR>
+          A speed test is a process run by specific software to measure the performance of your internet connection. <BR>
+          It evaluates your download and upload speeds, latency, and jitter to determine how fast data is sent and received. This can impact activities like streaming, gaming, and video calls.<BR>
+  - **Bot**: <BR>
+          I can connect you to a human agent for further assistance. <BR>
+          Would you like me to do that now?<BR>
+  - **User**: "Yes, please"
+  - **Bot**: <BR>
+          Please hold on while I connect you to our expert 📲<BR>
+##  **Fourth example**: digression and updating an information during the conversation
+
+  - **User**: I would like to verify my expenses for January's bill
+  - **Bot**: <BR> 
+           Your bill for January 2025 is $150.50. <BR>
+           The average of your past bills is $88.50. <BR>
+           This bill is higher than your average by $62.00.<BR>
+  - **Bot**: <BR> 
+          Would you like to see the breakdown of the costs?
+  - **User**: oh no I meant February
+  - **Bot**: <BR> 
+          Alright, I'm changing the bill month to February for you.
+          Your bill for February 2025 is $55.00.<BR>
+          The average of your past bills is $88.50.<BR>
+          This bill is lower than your average by $33.50. <BR>
+  - **Bot**: <BR>
+          Would you like to see the breakdown of the costs?
+  - **User**: No, that's fine
+  - **Bot**: <BR> 
+          Did I manage to provide all the information you need?<BR> 
+  - **User**: Yup
+  - **Bot**: <BR>
+          Glad, I helped ✨ <BR>
+          Have a nice day! <BR>
 
 # Features and bot content explanation.
  You can find in this bot
@@ -143,6 +192,8 @@ And you can find [here](https://rasa.com/docs/pro/installation/overview/) in our
 running the command.
   - install `pip install mlflow` when you use an LLM to generate the answer, when usung enterprise search.
   - run `rasa test e2e <add path to the test folder> -o` to see how the bot is performing, `-o` to get the results
+    For this project it will be `rasa test e2e tests/e2e_test_cases -o` in the tests folder you will then have two files
+      - `e2e_results_failed.yml` and `e2e_results_passed.yml`
 
 
 # Tips

@@ -25,7 +25,7 @@ test_cases:
             buttons:
               - title: "Yes, please"
                 payload: "SetSlots(breakdown_cost=True)"
-              - title: "No, thank you"
+              - title: "No, all good"
                 payload: "SetSlots(breakdown_cost=False)" 
     - user: "Yes, please" 
       assertions:
@@ -36,7 +36,7 @@ test_cases:
       assertions:
         - bot_uttered:
             utter_name: utter_provide_bill_sources
-
+# ====================================================>
   - test_case: billing unhappy path
     steps:
     - user: "I would like to check my bill"
@@ -56,13 +56,13 @@ test_cases:
             buttons:
               - title: "Yes, please"
                 payload: "SetSlots(breakdown_cost=True)"
-              - title: "No, thank you"
+              - title: "No, all good"
                 payload: "SetSlots(breakdown_cost=False)" 
     - user: "SetSlots(breakdown_cost=False)" 
       assertions:
         - bot_uttered:
-            utter_name: utter_ask_offer_more_help
-    - user: "SetSlots(offer_more_help=False)"
+            utter_name: utter_ask_issue_solved
+    - user: "SetSlots(issue_solved=True)"
       assertions:
         - bot_uttered:
             utter_name: utter_end_conversation

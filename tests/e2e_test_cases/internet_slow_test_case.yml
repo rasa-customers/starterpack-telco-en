@@ -1,4 +1,5 @@
 test_cases:
+# one of these test cases will fail since the speed test will be randomly selected
   - test_case: Solving Internet slow issue
     steps:
     - user: "Hey, my internet is very slow. What's going on?"
