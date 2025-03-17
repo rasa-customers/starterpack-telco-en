@@ -24,15 +24,15 @@ test_cases:
             text_matches: Would you like to see the breakdown of the costs?
             buttons:
               - title: "Yes, please"
-                payload: "SetSlots(breakdown_cost=True)"
+                payload: "/SetSlots(breakdown_cost=True)"
               - title: "No, all good"
-                payload: "SetSlots(breakdown_cost=False)" 
+                payload: "/SetSlots(breakdown_cost=False)" 
     - user: "Yes, please" 
       assertions:
         - action_executed: action_recap_bill
         - bot_uttered:
             utter_name: utter_ask_more_bill_details
-    - user: "SetSlots(more_bill_details=True)"
+    - user: "/SetSlots(more_bill_details=True)"
       assertions:
         - bot_uttered:
             utter_name: utter_provide_bill_sources
@@ -55,14 +55,14 @@ test_cases:
             text_matches: Would you like to see the breakdown of the costs?
             buttons:
               - title: "Yes, please"
-                payload: "SetSlots(breakdown_cost=True)"
+                payload: "/SetSlots(breakdown_cost=True)"
               - title: "No, all good"
-                payload: "SetSlots(breakdown_cost=False)" 
-    - user: "SetSlots(breakdown_cost=False)" 
+                payload: "/SetSlots(breakdown_cost=False)" 
+    - user: "/SetSlots(breakdown_cost=False)" 
       assertions:
         - bot_uttered:
             utter_name: utter_ask_issue_solved
-    - user: "SetSlots(issue_solved=True)"
+    - user: "/SetSlots(issue_solved=True)"
       assertions:
         - bot_uttered:
             utter_name: utter_end_conversation

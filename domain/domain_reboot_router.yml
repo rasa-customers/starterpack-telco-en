@@ -15,6 +15,6 @@ responses:
       Let me know when you are done!
     buttons:
     - title: "Done"
-      payload: "SetSlots(reboot_router=True)"
+      payload: "/SetSlots(reboot_router=True)"
     - title: "Facing a problem"
-      payload: "SetSlots(reboot_router=False)"
+      payload: "/SetSlots(reboot_router=False)"

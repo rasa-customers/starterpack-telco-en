@@ -75,18 +75,18 @@ responses:
         Would you like to see the breakdown of the costs?
       buttons:
         - title: "Yes, please"
-          payload: "SetSlots(breakdown_cost=True)"
+          payload: "/SetSlots(breakdown_cost=True)"
         - title: "No, all good"
-          payload: "SetSlots(breakdown_cost=False)" 
+          payload: "/SetSlots(breakdown_cost=False)" 
 
   utter_ask_issue_solved:
     - text: |
         Did I manage to provide all the information you need? 
       buttons:
         - title: "Yes, all good"
-          payload: "SetSlots(issue_solved=True)"
+          payload: "/SetSlots(issue_solved=True)"
         - title: "No, I need further help"
-          payload: "SetSlots(issue_solved=False)"
+          payload: "/SetSlots(issue_solved=False)"
 
   utter_ask_more_bill_details:
       - text: |
@@ -94,9 +94,9 @@ responses:
           Would you like a link to the overview that contains all your bills?
         buttons:
         - title: "Yes, please"
-          payload: "SetSlots(more_bill_details=True)"
+          payload: "/SetSlots(more_bill_details=True)"
         - title: "No, it's enough"
-          payload: "SetSlots(more_bill_details=False)"
+          payload: "/SetSlots(more_bill_details=False)"
 
   utter_provide_bill_sources:
       - text: |

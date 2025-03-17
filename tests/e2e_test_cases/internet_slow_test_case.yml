@@ -42,6 +42,6 @@ test_cases:
         - action_executed: "action_sleep_few_sec"
         - bot_uttered:
             utter_name: "utter_ask_more_help_needed"
-    - user: "SetSlots(more_help_needed=True)"
+    - user: "/SetSlots(more_help_needed=True)"
       assertions: 
        - flow_started: "pattern_human_handoff"

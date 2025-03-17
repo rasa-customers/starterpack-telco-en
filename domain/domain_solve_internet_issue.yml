@@ -52,9 +52,9 @@ responses:
         Would you like me to do that now? 
       buttons:
         - title: "Yes, please"
-          payload: "SetSlots(more_help_needed=True)"
+          payload: "/SetSlots(more_help_needed=True)"
         - title: "Not now"
-          payload: "SetSlots(more_help_needed=False)"  
+          payload: "/SetSlots(more_help_needed=False)"  
   utter_final_help:
     - text: |
         No problem! If you need help later, feel free to ask.
