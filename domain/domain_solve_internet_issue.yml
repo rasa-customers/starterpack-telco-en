@@ -14,7 +14,7 @@ responses:
   utter_acknowledge_issue:
     - text: |
         I see.
-        Let me try identify the root cause of the issue you are facing.
+        Let me try to identify the root cause of the issue you are facing.
   utter_communicate_run_diagnosticss:
     - text: |
         I will run a network diagnostics for you 🛜
@@ -37,14 +37,14 @@ responses:
   utter_speed_issue_not_resolved:
     - text: |
         Your network speed is {network_speed} Mbps.
-        That's too low
+        That's too low.
   utter_speed_network_not_issue:
     - text: |
         {network_speed} Mbps sounds right. The speed seems to be in order.
   utter_propose_other_solutions:
     - text: |
         The result of my test shows that there is no technical issues between your home and our core network.
-        However, if you're still experiencing slow browsing or buffering,it could be due to network congestion, too many connected devices, or Wi-Fi interference. 
+        However, if you're still experiencing slow browsing or buffering, it could be due to network congestion, too many connected devices, or Wi-Fi interference. 
         Try moving closer to your router or disconnecting unused devices. 
   utter_ask_more_help_needed:
     - text: |      
