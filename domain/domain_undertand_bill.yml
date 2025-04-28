@@ -64,7 +64,7 @@ slots:
 responses:
   utter_ask_customer_id:
     - text: |
-        Can you please provide me your customer id
+        Can you please provide me your customer id?
 
   utter_ask_bill_month:
     - text: |
@@ -90,7 +90,7 @@ responses:
 
   utter_ask_more_bill_details:
       - text: |
-          You can see more details in your account .
+          You can see more details in your account.
           Would you like a link to the overview that contains all your bills?
         buttons:
         - title: "Yes, please"
