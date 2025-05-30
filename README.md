@@ -149,7 +149,7 @@ Here's a brief description of the directories and files in the project root:
  - **Prompts** : This prompt looks like the original, I just remove the **CHITCHAT** command and added details for the `SearchAndReply()`. in the config you can see that I pointed to use this prompt.
  - **Tests** : this is a good way to test the bot's capabilities and ensure the same behavior when doing changes and updates. With Assertions we can track commands and when slots are set. The folder contains 7 test cases, this can help you better understand how the bot function. Results of the current tests are available in the tests folder to illustrate how e2e test works, however you can obtain the same result by running the command `rasa test e2e tests/e2e_test_cases -o` 
  - **Config**: We have two sections, the pipeline and the policies
-     - the pipeline we have `SingleStepLLMCommandGenerator` that will convert user messages into commands, we add the LLM we want to use here
+     - the pipeline we have `CompactLLMCommandGenerator` that will convert user messages into commands, we add the LLM we want to use here
      - the policies: two policies are used in this assistant the `FlowPolicy` and the `EnterpriseSearchPolicy`
 
 # Installation
@@ -157,7 +157,7 @@ You can find [here](https://learning.rasa.com/pre-requisites/pre-requisites/) ou
 Our docs provide an [Installation Overview](https://rasa.com/docs/pro/installation/overview/).
 
 ## Prerequisites
-- Rasa licence for 3.11 +
+- Rasa licence for 3.12 +
 - Python 3.10 +
 - Point to the LLM provider in the endpoint.yml and config.yml 
   it can be open AI, finetuned model or any other LLM provider see [here](https://rasa.com/docs/rasa-pro/concepts/components/llm-configuration-from-3-11)

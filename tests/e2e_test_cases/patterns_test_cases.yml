@@ -1,7 +1,7 @@
 test_cases:
 - test_case: test pattern search
   steps:
-    - user: "how to run a network speed test"
+    - user: "how do you run a network speed test?"
       assertions:
         - generative_response_is_grounded:
             threshold: 0.90

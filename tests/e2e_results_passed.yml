@@ -104,19 +104,19 @@ test_results:
   expected_steps:
   - user: "can you help me book a hotel or restaurant"
     assertions:
-    - flow_started: "fallback"
+    - flow_started: "pattern_cannot_handle"
     - bot_uttered:
-        utter_name: "utter_fallback"
+        utter_name: "utter_cannot_handle"
   - user: "can we discuss politics"
     assertions:
-    - flow_started: "fallback"
+    - flow_started: "pattern_cannot_handle"
     - bot_uttered:
-        utter_name: "utter_fallback"
+        utter_name: "utter_cannot_handle"
 
 - name: test pattern search
   pass_status: true
   expected_steps:
-  - user: "how to run a network speed test"
+  - user: "how do you run a network speed test?"
     assertions:
     - generative_response_is_grounded:
         threshold: 0.90

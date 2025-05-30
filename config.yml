@@ -1,9 +1,9 @@
 recipe: default.v1
 language: en
 pipeline:
-  - name: SingleStepLLMCommandGenerator
+  - name: CompactLLMCommandGenerator
     llm:
-      model_group: openai-direct-gpt-4
+      model_group: openai-direct-gpt-4o
     flow_retrieval:
       active: false
     prompt_template: prompts/command-generator.jinja2
@@ -15,6 +15,6 @@ policies:
     type: "faiss"
     source: "./docs"
   llm:
-    model_group: openai-direct-gpt-4
+    model_group: openai-direct-gpt-4o
 
 assistant_id: 20250226-101111-delicious-dimension

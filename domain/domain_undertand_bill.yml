@@ -25,26 +25,23 @@ slots:
   bill_amount:
     type: float
     mappings:
-      - type: custom
-        action: action_get_customer_info
+      - type: controlled
       
   user_authenticated:
     type: bool
     mappings:
-      - type: custom
+      - type: controlled
     initial_value: True
 
   average_bill:
       type: float
       mappings:
-        - type: custom
-          action: action_get_customer_info
+        - type: controlled
 
   difference:
       type: float
       mappings:
-        - type: custom
-          action: action_get_customer_info
+        - type: controlled
 
   breakdown_cost:
       type: bool
