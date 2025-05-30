@@ -4,10 +4,3 @@ flows:
     steps:
       - action: utter_bot_challenge
 
-  fallback:
-    description: |
-        This will be a fallbck flow. when for the user input that is not related to the purpose of the assistant. It should not respond to greetings or goodbyes or anything defined in another flow.
-    steps:
-      - action: utter_fallback
-# This flow will explain to the user that the bot can only help when their internet is slow, when they want to check their bill. 
-# if the user asks about another topic this flow should be triggered.

@@ -2,8 +2,7 @@ slots:
   network_speed:
     type: float
     mappings:
-      - type: custom
-        action: actions_run_speed_test
+      - type: controlled
   more_help_needed:
     type: bool
     mappings:
