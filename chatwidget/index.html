@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Telco Demo Powered by Rasa</title>
+	<link rel="stylesheet" href="./style.css">
+	<script type="module" src="https://unpkg.com/@rasahq/chat-widget-ui/dist/rasa-chatwidget/rasa-chatwidget.esm.js">
+	</script>
+	<link rel="stylesheet" href="https://unpkg.com/@rasahq/chat-widget-ui/dist/rasa-chatwidget/rasa-chatwidget.css" />
+</head>
+
+<body>
+	<div class="navbar">
+		<img width="100" src="./rasa-logo.svg" style="color:white;">
+	</div>
+	<div class="hero">
+		<!-- <h1>Chat with Rasa's CALM Assistant</h1>
+		<p><strong>I'm Rasano, your trusty virtual Telco assistant ,<br>Powered by Rasa</strong></p>
+
+		<div class="content">
+			<p>
+				Elevate your user experience with fluid conversations. This assistant is a powerful example of how a CALM-enabled Rasa Platform can dramatically increase customer satisfaction and reduce transfers to live agents.
+			</p>
+			<p>
+				CALM (Conversational AI with Language Models) is powered by LLMs, but it only executes business logic, eliminating hallucinations.
+			</p>
+			<p>
+				Our virtual Telco assistant can be of assistance for booking medical appointments, answering prescription queries, and any other general health-related questions.
+			</p>
+			<p>
+				Try it out today!
+			</p>
+		</div> -->
+			<p>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</p>
+
+	</div>
+	<rasa-chatbot-widget server-url="http://localhost:5005" initial-payload="/session_start" widget-title="Chat with Rasabot"  auto-open="true" input-message-placeholder="Enter your question/message">
+		<style>
+		:root{
+		  --font-family: Graphik_Web;
+		  /* --color-primary: rgb(3,195,0); Change the main color of the widget */
+		  --accordion-background-color: rgb(212, 237, 49); /* Change the color of the accordian */
+		}
+		</style>
+	</rasa-chatbot-widget>
+</body>
+
+</html>
