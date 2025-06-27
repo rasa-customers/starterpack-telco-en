@@ -16,8 +16,8 @@ RASA_VERSION := 3.12.13
 RASA_STUDIO_URL := <your studio URL>
 RASA_STUDIO_ASSISTANT_NAME := starterpack-telco-en
 RASA_SHELL_STREAM_READING_TIMEOUT_IN_SECONDS := 999
-RASA_PRO_LICENSE := <your-rasa-pro-license-key>
-OPENAI_API_KEY := sk-<your-openai-api-key>
+# RASA_PRO_LICENSE := <your-rasa-pro-license-key>
+# OPENAI_API_KEY := sk-<your-openai-api-key>
 
 # Commands
 
