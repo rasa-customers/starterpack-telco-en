@@ -27,11 +27,11 @@ Here's a brief description of the directories and files in the project root:
   - **data:** Contains flow definitions for the assistant. If needed, flows can be triggered by some intents by adding the nlu file with examples for intents.
   - **docs:** Contains sample documents for Enterprise Search.
   - **domain:** Contains domain files for the assistant.
-  - **prompts**: Contains Jinja2 template files for generating prompts.
+  - **prompts**: Contains Jinja2 template files for generating custom prompts.
   - **tests:** Contains end-to-end test scenarios for the assistant where each subdirectory reflects a suite of tests (i.e. happy path).
   - **Config:** Contains multiple configuration components for the assistant (i.e. different language models and settings). If Intents are needed then we need the NLU pipeline for it(tokennizer, featurizer, intent classifier ..) and **NLUCommandAdaptor** will be the component that will start a flow based on the intent prediction.
   - **Credentials**: Contains credentials for various services used by the Rasa assistant (i.e. Chat Widget)
-  - **Endpoints**: Contains endpoint configurations for the Rasa assistant. 
+  - **Endpoints**: Contains endpoint configurations for the Rasa assistant.
     - How to run the action server is added
     - How to call NLG server
     - How to define the model group
@@ -66,8 +66,8 @@ Here's a brief description of the directories and files in the project root:
             If that doesn't help, let me know, and we can try something else. 😊 <BR>
 
 ##  **Second example**:<br>Providing human agent help when needed in the "billing" use case
-  - **User**: can you tell me my expenses? <BR>
-  - **Bot**: <BR> 
+  - **User**: Can you explain my bill in detail? <BR>
+  - **Bot**: <BR>
             Alright. Could you please specify the month? 📅
   - **User**: Feb
   - **Bot**: <BR>
@@ -83,7 +83,7 @@ Here's a brief description of the directories and files in the project root:
           Please hold on while I connect you to our expert 📲 <BR>
 
 ##  **Third example**:<br>Intervening and asking a knowledge questions base during a conversation
-  - **User**:  my internet is so slow lately
+  - **User**: My internet is so slow lately
   - **Bot**: <BR>
           I see.
           Let me try identify the root cause of the issue you are facing.<BR>
@@ -110,14 +110,14 @@ Here's a brief description of the directories and files in the project root:
 
 ##  **Fourth example**:<br>Digression and updating an information during the conversation
   - **User**: I would like to verify my expenses for January's bill
-  - **Bot**: <BR> 
+  - **Bot**: <BR>
            Your bill for January 2025 is $150.50. <BR>
            The average of your past bills is $88.50. <BR>
            This bill is higher than your average by $62.00.<BR>
-  - **Bot**: <BR> 
+  - **Bot**: <BR>
           Would you like to see the breakdown of the costs?
   - **User**: oh no I meant February
-  - **Bot**: <BR> 
+  - **Bot**: <BR>
           Alright, I'm changing the bill month to February for you.
           Your bill for February 2025 is $55.00.<BR>
           The average of your past bills is $88.50.<BR>
@@ -125,8 +125,8 @@ Here's a brief description of the directories and files in the project root:
   - **Bot**: <BR>
           Would you like to see the breakdown of the costs?
   - **User**: No, that's fine
-  - **Bot**: <BR> 
-          Did I manage to provide all the information you need?<BR> 
+  - **Bot**: <BR>
+          Did I manage to provide all the information you need?<BR>
   - **User**: Yup
   - **Bot**: <BR>
           Glad, I helped ✨ <BR>
@@ -146,10 +146,10 @@ Here's a brief description of the directories and files in the project root:
     - **type** : Float, text, bool and categorical
     - **mappings** : from_llm, and custom
  - **Images** : These images are used in the README
- - **Prompts** : This prompt looks like the original, I just remove the **CHITCHAT** command and added details for the `SearchAndReply()`. in the config you can see that I pointed to use this prompt.
- - **Tests** : this is a good way to test the bot's capabilities and ensure the same behavior when doing changes and updates. With Assertions we can track commands and when slots are set. The folder contains 7 test cases, this can help you better understand how the bot function. Results of the current tests are available in the tests folder to illustrate how e2e test works, however you can obtain the same result by running the command `rasa test e2e tests/e2e_test_cases -o` 
+ - **Prompts** : Optional prompts.  You can customize prompt(s) here and refer to them in the config.yml file. The example prompt here looks like the original; the **CHITCHAT** command has been removed and additional details have been added for the `SearchAndReply()`.
+ - **Tests** : This is a good way to test the bot's capabilities and ensure the same behavior when doing changes and updates. With Assertions we can track commands and when slots are set. The folder contains 7 test cases, this can help you better understand how the bot function. Results of the current tests are available in the tests folder to illustrate how e2e test works, however you can obtain the same result by running the command `rasa test e2e tests/e2e_test_cases -o`
  - **Config**: We have two sections, the pipeline and the policies
-     - the pipeline we have `CompactLLMCommandGenerator` that will convert user messages into commands, we add the LLM we want to use here
+     - the pipeline we have `SearchReadyLLMCommandGenerator` that will convert user messages into commands, we add the LLM we want to use here
      - the policies: two policies are used in this assistant the `FlowPolicy` and the `EnterpriseSearchPolicy`
 
 # Installation
@@ -157,12 +157,12 @@ You can find [here](https://learning.rasa.com/pre-requisites/pre-requisites/) ou
 Our docs provide an [Installation Overview](https://rasa.com/docs/pro/installation/overview/).
 
 ## Prerequisites
-- Rasa licence for 3.12 +
+- Rasa licence for 3.13 +
 - Python 3.10 +
-- Point to the LLM provider in the endpoint.yml and config.yml 
-  it can be open AI, finetuned model or any other LLM provider see [here](https://rasa.com/docs/rasa-pro/concepts/components/llm-configuration-from-3-11)
+- Point to the LLM provider in the endpoints.yml and config.yml,
+  it can be OpenAI, a fine-tuned model or any other LLM provider see [here](https://rasa.com/docs/rasa-pro/concepts/components/llm-configuration-from-3-11)
 
-## Set up 
+## Set up
 - Clone the repository:
 
   ```shell
@@ -201,7 +201,7 @@ running the command.
   - Always review the prompt in the logs to make sure the right flows and slots are available and check the conversation history to better understand the bot's behavior.
   - Search for `action_list` to see the command that was predicted by CALM, this will help you debug.
     For instance, it can be `action_list=StartFlow(understand_bill)` or `action_list=SetSlot(bill_month, 2025-01-01)`
-  - Search for `commands=` 
+  - Search for `commands=`
     For instance `commands=[StartFlowCommand(flow='bot_challenge')]`
   - Check the **tracker state** in the **inspector view**
   - Add `logging.info` to you custom actions to get more visibility.

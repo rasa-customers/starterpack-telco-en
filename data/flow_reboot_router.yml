@@ -6,6 +6,3 @@ flows:
       - action: utter_explain_reboot_router
       - collect: reboot_router
         reset_after_flow_ends: true
-
-        
-

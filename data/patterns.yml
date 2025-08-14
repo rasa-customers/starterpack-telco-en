@@ -1,7 +1,7 @@
 flows:
 
   pattern_search: # This is a patter that triggered if we have a knowledge base question so we rely on the description we have for SearchAndReply() command
-    description: Flow for handling how to run a speed test ## This is a description just a place holder 
+    description: Flow for handling how to run a speed test ## This is a description just a place holder
                                                             #if you want to change it you need to update the command description in the prompt
     name: pattern search
     steps:
@@ -12,7 +12,7 @@ flows:
     name: pattern human handoff
     steps:
       - action: utter_more_help_needed_handoff_pattern
-  
+
   pattern_completed: # this a patters that is triggered at the end of every flow
     description: all flows have been completed and there is nothing else to be done
     name: pattern completed
@@ -29,4 +29,3 @@ flows:
       - action: action_get_customer_info
       - action: utter_session_start
       - action: action_session_start
-      

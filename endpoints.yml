@@ -9,9 +9,35 @@
 
 # Server which runs your custom actions.
 # https://rasa.com/docs/rasa-pro/concepts/custom-actions
-
 action_endpoint:
   actions_module: "actions"
+
+# Allow and what LLM handles rephrasing of responses
+nlg:
+  type: rephrase
+  llm:
+    model_group: gpt-4o-mini
+
+# Model Groups - Integrate with different LLM providers
+# https://rasa.com/docs/reference/config/components/llm-configuration/#model-groups
+# e.g. https://platform.openai.com/docs/models
+model_groups:
+  - id: openai-direct-gpt-4o
+    models:
+      - provider: openai
+        model: gpt-4o-2024-11-20
+        timeout: 7
+        temperature: 0.0
+        top_p: 0.0
+  - id: gpt-4o-mini
+    models:
+      - provider: openai
+        model: gpt-4o-mini-2024-07-18
+        temperature: 0.3
+  # - id: openai_embeddings
+  #   models:
+  #     - provider: openai
+  #       model: text-embedding-ada-002
 
 # Tracker store which is used to store the conversations.
 # By default the conversations are stored in memory.
@@ -40,32 +66,3 @@ action_endpoint:
 #  username: username
 #  password: password
 #  queue: queue
-
-# Allow rephrasing of responses using a Rasa-hosted model
-nlg:
-  type: rephrase
-  llm:
-    model_group: openai-direct-gpt-4o
-
-model_groups:
-  - id: openai-direct-gpt-4o
-    models:
-      - provider: openai
-        model: gpt-4o-2024-11-20
-        timeout: 7
-        temperature: 0.0
-        top_p: 0.0
-  # - id: rasa_command_generation_model
-  #   models:
-  #     - provider: rasa
-  #       model: rasa/cmd_gen_codellama_13b_calm_demo
-  #       api_base: "https://tutorial-llm.rasa.ai"
-
-  # - id: openai_llm
-  #   models:
-  #     - provider: openai
-  #       model: gpt-4
-  # - id: openai_embeddings
-  #   models:
-  #     - provider: openai
-  #       model: text-embedding-ada-002
