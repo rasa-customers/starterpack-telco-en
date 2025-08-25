@@ -167,20 +167,20 @@ Here's a brief description of the directories and files in the project root:
 ## Setting Environment Variables for Rasa
 
 **MacOS, Linux**
->> **Note:** These steps apply to both macOS and Linux. On macOS, zsh is usually the default shell (~/.zshrc), while on Linux bash is often the default (~/.bashrc). Adjust the file name depending on your shell.
+>> **Note:** These steps apply to both macOS and Linux. On macOS, zsh is usually the default shell (`~/.zshrc`), while on Linux bash is often the default (`~/.bashrc`). Adjust the file name depending on your shell.
 1. Open your terminal, and edit your shell config
-    a. `nano ~/.zshrc` (or `~/.bashrc` if you’re using bash)
+    - `nano ~/.zshrc` (or `~/.bashrc` if you’re using bash)
 2. At the bottom of the file, add lines like this (replace the values with your actual keys):
-    a. export RASA_PRO_LICENSE=<your-rasa-pro-license-key>
-    b. export OPENAI_API_KEY=sk-<your-openai-api-key>
+    - `export RASA_PRO_LICENSE=<your-rasa-pro-license-key>`
+    - `export OPENAI_API_KEY=sk-<your-openai-api-key>`
     For example, it may look something like this:
-    a. RASA_PRO_LICENSE=etou948949theu
-    b. OPENAI_API_KEY=sk-proj-ntehoitnhtnoe
-3. Save the file (`CTRL+O`, `Enter`, `CTRL+X in nano), then reload it
-    a. `source ~/.zshrc`
+    - `RASA_PRO_LICENSE=etou948949theu`
+    - `OPENAI_API_KEY=sk-proj-ntehoitnhtnoe`
+3. Save the file (`CTRL+O`, `Enter`, `CTRL+X` in nano), then reload it
+    - `source ~/.zshrc`
 4. Check that the variables are set:
-    a. `echo $RASA_PRO_LICENSE`
-    b. `echo $OPENAI_API_KEY`
+    - `echo $RASA_PRO_LICENSE`
+    - `echo $OPENAI_API_KEY`
    
 
 
