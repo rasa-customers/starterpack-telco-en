@@ -191,6 +191,7 @@ Here's a brief description of the directories and files in the project root:
 4. Check that the variables are set:
     - `echo $RASA_PRO_LICENSE`
     - `echo $OPENAI_API_KEY`
+
 **Windows**
 1. Press `Win + S` and type `Environment Variables`, then select `Edit the system environment variables`.
 2. In the `System Properties` window, click `Environment Variables`.
