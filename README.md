@@ -152,6 +152,24 @@ Here's a brief description of the directories and files in the project root:
      - the pipeline we have `SearchReadyLLMCommandGenerator` that will convert user messages into commands, we add the LLM we want to use here
      - the policies: two policies are used in this assistant the `FlowPolicy` and the `EnterpriseSearchPolicy`
 
+
+# Installation - via Docker
+
+## Before you begin
+
+**To use this starter pack, you will need:**
+1. A free [Rasa Developer Edition license](https://rasa.com/rasa-pro-developer-edition-license-key-request/). To get the free license use the link and complete the form. You’ll be emailed the license key. Store this somewhere safe as you’ll need it a bit later in the instructions below. The actual installation of the Rasa Pro platform will be performed during the installation steps described below.
+2. An API key from OpenAI (the default model provider for this starter pack, though CALM supports other LLMs, too).
+ - If you haven't already, sign up for an account on the OpenAI platform.
+ - Then, navigate to the [OpenAI Key Management](https://platform.openai.com/api-keys) (Dashboard > API keys) page and click on the "Create New Secret Key" button to initiate obtaining `<your-openai-api-key>`.
+
+
+
+
+
+
+
+# OLDER----------
 # Installation
 You can find [here](https://learning.rasa.com/pre-requisites/pre-requisites/) our Rasa enablement and step by step guide on how to install Rasa. <BR>
 Our docs provide an [Installation Overview](https://rasa.com/docs/pro/installation/overview/).

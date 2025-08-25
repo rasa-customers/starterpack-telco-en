@@ -12,7 +12,7 @@ CONFIG ?= config
 # Variables
 HOMEBREW_INSTALL_SCRIPT := https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
 PYTHON_VERSION := 3.11.11
-RASA_VERSION := 3.13.6
+RASA_VERSION := 3.13.7
 RASA_STUDIO_URL := <your studio URL>
 RASA_STUDIO_ASSISTANT_NAME := starterpack-telco-en
 RASA_SHELL_STREAM_READING_TIMEOUT_IN_SECONDS := 999
