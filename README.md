@@ -197,8 +197,8 @@ Here's a brief description of the directories and files in the project root:
 <br><br><br>
 ## Install Docker
 1. Download & install docker:
-    - MacOS: [https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/) |
-    - Linux: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) |
+    - MacOS:\t[https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/)
+    - Linux:\t[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
     - Windows: [https://docs.docker.com/desktop/setup/install/windows-install/](https://docs.docker.com/desktop/setup/install/windows-install/)
         - Use WSL 2 backend (not Hyper-V) |
 3. Start Docker Desktop. Make sure Docker Desktop (the Docker daemon) is running before you run any commands.
@@ -220,7 +220,7 @@ To start up the Telecom Banking Demo Assistant, ensure you're in the **starterpa
 1. **Train the Rasa model**
 2. **Start the Rasa Inspector** or **Start the Rasa Chat Widget**
 <br><br><br>
-## 1 .Train the Rasa model
+## 1. Train the Rasa model
 **MacOS, Linux**
  ```shell
 docker run --rm \
@@ -230,7 +230,7 @@ docker run --rm \
     rasa/rasa-pro:3.13.7 \
     train
 ```
-**Windows (Powershel))**
+**Windows (Powershell)**
 ```powershell
 docker run --rm `
     -v "${PWD}:/app" `
@@ -239,6 +239,33 @@ docker run --rm `
     rasa/rasa-pro:3.13.7 `
     train
 ```
+You will find your trained model inside the models/ directory.
+You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
+<br><br>
+## 2. Start the Rasa Inspector
+**MacOS, Linux**
+ ```shell
+docker run \
+    -v "$PWD"/:/app \
+    -p 5005:5005 \
+    -e RASA_PRO_LICENSE=${RASA_PRO_LICENSE} \
+    -e OPENAI_API_KEY=${OPENAI_API_KEY} \
+    rasa/rasa-pro:3.13.7 \
+    inspect
+```
+**Windows (Powershell)**
+```powershell
+docker run `
+    -v "${PWD}:/app" `
+    -p 5005:5005 `
+    -e RASA_PRO_LICENSE=${env:RASA_PRO_LICENSE} `
+    -e OPENAI_API_KEY=${env:OPENAI_API_KEY} `
+    rasa/rasa-pro:3.13.7 `
+    inspect
+```
+1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
+2. In your browser go to: http://localhost:5005/webhooks/socketio/inspect.html
+
 
 
 
