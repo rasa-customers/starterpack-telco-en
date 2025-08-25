@@ -157,6 +157,13 @@ Here's a brief description of the directories and files in the project root:
 > **Note:** You can find alternative installation methods in the [Rasa documentation](https://rasa.com/docs/pro/installation/overview).
 <br>
 
+## Installation Steps
+- Before you begin
+- Setting Environment Variables for Rasa
+- Install Docker
+- Download Rasa Telecom Starter Pack
+- Starting the Demo Assistant
+<br><br><br>
 ## Before you begin
 
 **To use this starter pack, you will need:**
@@ -216,8 +223,8 @@ Here's a brief description of the directories and files in the project root:
 3. Open your terminal (or PowerShell on Windows) and navigate to the directory where you uncompressed the **starterpack-telco-en** files.
 Congratulations, you have successfully installed Rasa and are ready to use the Telecom Starter Pack as a demo or as a foundation for your custom flows.
 <br><br><br>
-## Starting the demo
-To start up the Telecom Banking Demo Assistant, ensure you're in the **starterpack-telco-en** directory.
+## Starting the Demo Assistant
+To start up the Telecom Demo Assistant, ensure you're in the **starterpack-telco-en** directory.
 1. **Train the Rasa model**
 2. **Start the Rasa Inspector** or
 3. **Start the Rasa Chat Widget**
