@@ -154,8 +154,7 @@ Here's a brief description of the directories and files in the project root:
 
 
 # Installation - via Docker
-
-
+<br><br><br>
 ## Before you begin
 
 **To use this starter pack, you will need:**
@@ -164,8 +163,7 @@ Here's a brief description of the directories and files in the project root:
     - If you haven't already, sign up for an account on the OpenAI platform.
     - Then, navigate to the [OpenAI Key Management](https://platform.openai.com/api-keys) (Dashboard > API keys) page and click on the "Create New Secret Key" button to initiate obtaining `<your-openai-api-key>`.
 3. A computer. Instructions are available for MacOS, Linux & Windows.
-
-
+<br><br><br>
 ## Setting Environment Variables for Rasa
 
 **MacOS, Linux**
@@ -175,10 +173,9 @@ Here's a brief description of the directories and files in the project root:
 2. At the bottom of the file, add lines like this (replace the values with your actual keys):
     - `export RASA_PRO_LICENSE=<your-rasa-pro-license-key>`
     - `export OPENAI_API_KEY=sk-<your-openai-api-key>`
-
-    i. For example, it may look something like this:
-    - `RASA_PRO_LICENSE=etou948949theu`
-    - `OPENAI_API_KEY=sk-proj-ntehoitnhtnoe`
+    1. For example, it may look something like this:
+        - `RASA_PRO_LICENSE=etou948949theu`
+        - `OPENAI_API_KEY=sk-proj-ntehoitnhtnoe`
 3. Save the file (`CTRL+O`, `Enter`, `CTRL+X` in nano), then reload it
     - `source ~/.zshrc`
 4. Check that the variables are set:
