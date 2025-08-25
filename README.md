@@ -311,7 +311,7 @@ docker run `
 5. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
 <br><br>
 > [!TIP]
-> You can also edit index.html to customize the look and behavior of the demo.
+> You can also edit chatwidget/index.html to customize the look and behavior of the demo.
 
 > [!NOTE]
 > For a full list of Rasa CLI commands refer to: https://rasa.com/docs/reference/api/command-line-interface/#cheat-sheet
