@@ -177,8 +177,8 @@ Here's a brief description of the directories and files in the project root:
     - `export OPENAI_API_KEY=sk-<your-openai-api-key>`
 
     i. For example, it may look something like this:
-        - `RASA_PRO_LICENSE=etou948949theu`
-        - `OPENAI_API_KEY=sk-proj-ntehoitnhtnoe`
+    - `RASA_PRO_LICENSE=etou948949theu`
+    - `OPENAI_API_KEY=sk-proj-ntehoitnhtnoe`
 3. Save the file (`CTRL+O`, `Enter`, `CTRL+X` in nano), then reload it
     - `source ~/.zshrc`
 4. Check that the variables are set:
