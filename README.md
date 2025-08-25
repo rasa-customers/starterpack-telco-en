@@ -197,31 +197,53 @@ Here's a brief description of the directories and files in the project root:
 <br><br><br>
 ## Install Docker
 1. Download & install docker:
-    - MacOS: [https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/)
-    - Linux: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
-    - Windows: [https://docs.docker.com/desktop/setup/install/windows-install/](https://docs.docker.com/desktop/setup/install/windows-install/)
-        - Use WSL 2 backend (not Hyper-V)
-2. Start Docker Desktop. Make sure Docker Desktop (the Docker daemon) is running before you run any commands.
+| MacOS | [https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/) |
+| Linux | [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) |
+| Windows | [https://docs.docker.com/desktop/setup/install/windows-install/](https://docs.docker.com/desktop/setup/install/windows-install/)<br>Use WSL 2 backend (not Hyper-V) |
+3. Start Docker Desktop. Make sure Docker Desktop (the Docker daemon) is running before you run any commands.
     - Windows: Follow prompted instructions for WSL (e.g. `wsl --update`)
-3. Verify Installation. Open your terminal (Mac/Linux shell, or PowerShell on Windows) and run:
+4. Verify Installation. Open your terminal (Mac/Linux shell, or PowerShell on Windows) and run:
     1. `docker --version`
-4. Download the Rasa Pro Docker image. Open your terminal and run:
+5. Download the Rasa Pro Docker image. Open your terminal and run:
     1. `docker pull rasa/rasa-pro:3.13.7`
 <br><br><br>
 ## Download Rasa Starterpack
 1. Download the Source Code Assets for the [latest release from GitHub](https://github.com/rasa-customers/starterpack-telco-en/releases)
 2. Uncompress the assets in a local directory of your choice.
-    1. The starterpack-telco-en directory (created when uncompressed) contains a README file with additional instructions on installing dependencies, training the model, and running the assistant locally.
-3. Open your terminal (or PowerShell on Windows) and navigate to the directory where you uncompressed the starterpack-telco-en files.
+    1. The **starterpack-telco-en** directory (created when uncompressed) contains a README file with additional instructions on installing dependencies, training the model, and running the assistant locally.
+3. Open your terminal (or PowerShell on Windows) and navigate to the directory where you uncompressed the **starterpack-telco-en** files.
 Congratulations, you have successfully installed Rasa and are ready to use the Telecom Starter Pack as a demo or as a foundation for your custom flows.
 <br><br><br>
 ## Starting the demo
-To start up the Telecom Banking Demo Assistant, ensure you're in the starterpack-telco-en directory.
-### Train the Rasa model
-### Start the Rasa Inspector (or)
-### Start the Rasa Chat Widget
+To start up the Telecom Banking Demo Assistant, ensure you're in the **starterpack-telco-en** directory.
+1. **Train the Rasa model**
+2. **Start the Rasa Inspector** or **Start the Rasa Chat Widget**
 
 ## Train the Rasa model
+
+**MacOS, Linux**
+ ```shell
+docker run --rm \
+    -v "$PWD":/app \
+    -e RASA_PRO_LICENSE=${RASA_PRO_LICENSE} \
+    -e OPENAI_API_KEY=${OPENAI_API_KEY} \
+    rasa/rasa-pro:3.13.7 \
+    train
+```
+
+**Windows (Powershel))**
+```powershell
+docker run --rm `
+    -v "${PWD}:/app" `
+    -e RASA_PRO_LICENSE=${env:RASA_PRO_LICENSE} `
+    -e OPENAI_API_KEY=${env:OPENAI_API_KEY} `
+    rasa/rasa-pro:3.13.7 `
+    train
+```
+
+
+
+
 
 
 # OLDER----------
