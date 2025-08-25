@@ -308,6 +308,7 @@ docker run `
 > [!NOTE]
 > For a full list of Rasa CLI commands refer to: https://rasa.com/docs/reference/api/command-line-interface/#cheat-sheet
 <br>
+
 # Tips
 - Check our docs to understand all [Rasa primitives](https://rasa.com/docs/reference/primitives/)
   - Get familiar with all flow properties, patterns, responses
@@ -321,6 +322,7 @@ docker run `
   - Check the **tracker state** in the **inspector view**
   - Add `logging.info` to you custom actions to get more visibility.
 <br>
+
 # Next Steps
 - Identify the use cases you would like to add to this assistant.
   - It can be improving the existing two or adding new ones.
@@ -333,8 +335,10 @@ docker run `
 - Share the first versions with your colleague to test and provide feedback.
 - Improve, test, re-share.
 <br>
+
 # Contributing
 Feel free to fork this repo and submit pull requests. Suggestions and improvements are always welcome!
 <br>
+
 # License
 - This project is licensed under the Apache 2.0 License, allowing modification, distribution, and usage with proper attribution.
