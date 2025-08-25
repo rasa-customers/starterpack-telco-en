@@ -197,10 +197,10 @@ Here's a brief description of the directories and files in the project root:
 <br><br><br>
 ## Install Docker
 1. Download & install docker:
-    - MacOS:\t[https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/)
-    - Linux:\t[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
-    - Windows: [https://docs.docker.com/desktop/setup/install/windows-install/](https://docs.docker.com/desktop/setup/install/windows-install/)
-        - Use WSL 2 backend (not Hyper-V) |
+    - MacOS:   https://docs.docker.com/desktop/setup/install/mac-install/
+    - Linux:   https://docs.docker.com/engine/install/
+    - Windows: https://docs.docker.com/desktop/setup/install/windows-install/
+        - Use WSL 2 backend (not Hyper-V)
 3. Start Docker Desktop. Make sure Docker Desktop (the Docker daemon) is running before you run any commands.
     - Windows: Follow prompted instructions for WSL (e.g. `wsl --update`)
 4. Verify Installation. Open your terminal (Mac/Linux shell, or PowerShell on Windows) and run:
@@ -208,7 +208,7 @@ Here's a brief description of the directories and files in the project root:
 5. Download the Rasa Pro Docker image. Open your terminal and run:
     1. `docker pull rasa/rasa-pro:3.13.7`
 <br><br><br>
-## Download Rasa Starterpack
+## Download Rasa Telecom Starter Pack
 1. Download the Source Code Assets for the [latest release from GitHub](https://github.com/rasa-customers/starterpack-telco-en/releases)
 2. Uncompress the assets in a local directory of your choice.
     1. The **starterpack-telco-en** directory (created when uncompressed) contains a README file with additional instructions on installing dependencies, training the model, and running the assistant locally.
@@ -218,7 +218,8 @@ Congratulations, you have successfully installed Rasa and are ready to use the T
 ## Starting the demo
 To start up the Telecom Banking Demo Assistant, ensure you're in the **starterpack-telco-en** directory.
 1. **Train the Rasa model**
-2. **Start the Rasa Inspector** or **Start the Rasa Chat Widget**
+2. **Start the Rasa Inspector** or
+3. **Start the Rasa Chat Widget**
 <br><br><br>
 ## 1. Train the Rasa model
 **MacOS, Linux**
@@ -244,7 +245,7 @@ You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
 <br><br>
 ## 2. Start the Rasa Inspector
 **MacOS, Linux**
- ```shell
+ ```bash
 docker run \
     -v "$PWD"/:/app \
     -p 5005:5005 \
@@ -265,8 +266,37 @@ docker run `
 ```
 1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
 2. In your browser go to: http://localhost:5005/webhooks/socketio/inspect.html
-
-
+<br><br>
+## 2. Start the Rasa Chat Widget
+**MacOS, Linux**
+ ```bash
+docker run \
+    -v "$PWD"/:/app \
+    -p 5005:5005 \
+    -e RASA_PRO_LICENSE=${RASA_PRO_LICENSE} \
+    -e OPENAI_API_KEY=${OPENAI_API_KEY} \
+    rasa/rasa-pro:3.13.7 \
+   run  --debug --log-file logs.out --enable-api --cors "*"
+```
+**Windows (Powershell)**
+```powershell
+docker run `
+    -v "${PWD}:/app" `
+    -p 5005:5005 `
+    -e RASA_PRO_LICENSE=${env:RASA_PRO_LICENSE} `
+    -e OPENAI_API_KEY=${env:OPENAI_API_KEY} `
+    rasa/rasa-pro:3.13.7 `
+    run --debug --log-file logs.out --enable-api --cors "*"
+```
+1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
+2. Open Finder (Mac) or File Explorer (Windows).
+3. Navigate to the chatwidget directory inside the starterpack-telco-en folder you uncompressed earlier.
+4. Double-click `index.html` to open the demo in your browser.
+5. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
+> [!TIP]
+> You can also edit index.html to customize the look and behavior of the demo.
+> [!NOTE]
+> For a full list of Rasa CLI commands refer to: https://rasa.com/docs/reference/api/command-line-interface/#cheat-sheet
 
 
 
