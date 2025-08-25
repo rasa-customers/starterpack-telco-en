@@ -154,7 +154,7 @@ Here's a brief description of the directories and files in the project root:
 
 
 # Installation - via Docker
-<br><br><br>
+<br><br>
 ## Before you begin
 
 **To use this starter pack, you will need:**
@@ -167,7 +167,9 @@ Here's a brief description of the directories and files in the project root:
 ## Setting Environment Variables for Rasa
 
 **MacOS, Linux**
-> **Note:** These steps apply to both macOS and Linux. On macOS, zsh is usually the default shell (`~/.zshrc`), while on Linux bash is often the default (`~/.bashrc`). Adjust the file name depending on your shell.
+> [!NOTE]
+> These steps apply to both macOS and Linux. On macOS, zsh is usually the default shell (`~/.zshrc`), while on Linux bash is often the default (`~/.bashrc`). Adjust the file name depending on your shell.
+
 1. Open your terminal, and edit your shell config
     - `nano ~/.zshrc` (or `~/.bashrc` if you’re using bash)
 2. At the bottom of the file, add lines like this (replace the values with your actual keys):
