@@ -160,8 +160,8 @@ Here's a brief description of the directories and files in the project root:
 **To use this starter pack, you will need:**
 1. A free [Rasa Developer Edition license](https://rasa.com/rasa-pro-developer-edition-license-key-request/). To get the free license use the link and complete the form. You’ll be emailed the license key. Store this somewhere safe as you’ll need it a bit later in the instructions below. The actual installation of the Rasa Pro platform will be performed during the installation steps described below.
 2. An API key from OpenAI (the default model provider for this starter pack, though CALM supports other LLMs, too).
- - If you haven't already, sign up for an account on the OpenAI platform.
- - Then, navigate to the [OpenAI Key Management](https://platform.openai.com/api-keys) (Dashboard > API keys) page and click on the "Create New Secret Key" button to initiate obtaining `<your-openai-api-key>`.
+  - If you haven't already, sign up for an account on the OpenAI platform.
+  - Then, navigate to the [OpenAI Key Management](https://platform.openai.com/api-keys) (Dashboard > API keys) page and click on the "Create New Secret Key" button to initiate obtaining `<your-openai-api-key>`.
 
 
 
