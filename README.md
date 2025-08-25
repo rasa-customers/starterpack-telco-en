@@ -154,6 +154,7 @@ Here's a brief description of the directories and files in the project root:
 
 <br><br><br>
 # Installation (Docker)
+> **Note:** You can find alternative installation methods in the [Rasa documentation](https://rasa.com/docs/pro/installation/overview).
 <br>
 
 ## Before you begin
@@ -242,7 +243,7 @@ docker run --rm `
 ```
 You will find your trained model inside the models/ directory.
 You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
-<br><br>
+<br><br><br>
 ## 2. Start the Rasa Inspector
 **MacOS, Linux**
  ```bash
@@ -266,8 +267,8 @@ docker run `
 ```
 1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
 2. In your browser go to: http://localhost:5005/webhooks/socketio/inspect.html
-<br><br>
-## 2. Start the Rasa Chat Widget
+<br><br><br>
+## 3. Start the Rasa Chat Widget
 **MacOS, Linux**
  ```bash
 docker run \
@@ -295,6 +296,7 @@ docker run `
 5. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
 > [!TIP]
 > You can also edit index.html to customize the look and behavior of the demo.
+
 > [!NOTE]
 > For a full list of Rasa CLI commands refer to: https://rasa.com/docs/reference/api/command-line-interface/#cheat-sheet
 
