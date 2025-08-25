@@ -158,13 +158,13 @@ Here's a brief description of the directories and files in the project root:
 <br>
 
 ## Installation Steps
-- Before you begin
+- Before You Begin
 - Setting Environment Variables for Rasa
 - Install Docker
 - Download Rasa Telecom Starter Pack
 - Starting the Demo Assistant
 <br><br><br>
-## Before you begin
+## Before You Begin
 
 **To use this starter pack, you will need:**
 1. A free [Rasa Developer Edition license](https://rasa.com/rasa-pro-developer-edition-license-key-request/). To get the free license use the link and complete the form. You’ll be emailed the license key. Store this somewhere safe as you’ll need it a bit later in the instructions below. The actual installation of the Rasa Pro platform will be performed during the installation steps described below.
@@ -301,62 +301,17 @@ docker run `
 3. Navigate to the chatwidget directory inside the starterpack-telco-en folder you uncompressed earlier.
 4. Double-click `index.html` to open the demo in your browser.
 5. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
+<br><br>
 > [!TIP]
 > You can also edit index.html to customize the look and behavior of the demo.
 
 > [!NOTE]
 > For a full list of Rasa CLI commands refer to: https://rasa.com/docs/reference/api/command-line-interface/#cheat-sheet
-
-
-
-
-
-# OLDER----------
-# Installation
-You can find [here](https://learning.rasa.com/pre-requisites/pre-requisites/) our Rasa enablement and step by step guide on how to install Rasa. <BR>
-Our docs provide an [Installation Overview](https://rasa.com/docs/pro/installation/overview/).
-
-## Prerequisites
-- Rasa licence for 3.13 +
-- Python 3.10 +
-- Point to the LLM provider in the endpoints.yml and config.yml,
-  it can be OpenAI, a fine-tuned model or any other LLM provider see [here](https://rasa.com/docs/rasa-pro/concepts/components/llm-configuration-from-3-11)
-
-## Set up
-- Clone the repository:
-
-  ```shell
-  git clone <rasa-customers/starterpack-telco-en.git>
-  cd <rasa-customers/starterpack-telco-en>
-  ```
-
-- Create and activate a virtual environment, you can use `venv` (built-in Python virtual environment) or any other virtual environment manager.
-
-```shell
-  python -m venv venv
-  source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-  Make sure this environment is always active when you are testing or building the assistant.
-
-- Train the Rasa model: `rasa train`
-
-
-# Running the Bot
-- To run the bot you can use `rasa inspect --debug`
-- After any changes made to your data, domain folder or config file you need to retrain the bot running `rasa train` and if changes are made in the custom actions just re-run `rasa inspect --debug`
-- After adding changes, make sure to add `e2e test cases`, to do so
-  - Set `RASA_PRO_BETA_E2E_ASSERTIONS=true` environment variable before
-running the command.
-  - Install `pip install mlflow` when you use an LLM to generate the answer with enterprise search.
-  - Run `rasa test e2e <add path to the test folder> -o` to see how the bot is performing, `-o` to get the results.
-    For this project it will be `rasa test e2e tests/e2e_test_cases -o` in the tests folder you will then have two files
-      - `e2e_results_failed.yml` and `e2e_results_passed.yml`
-
-
+<br>
 # Tips
 - Check our docs to understand all [Rasa primitives](https://rasa.com/docs/reference/primitives/)
   - Get familiar with all flow properties, patterns, responses
-- Start writing e2e test cases right when you start writing your flows, you can start by copying what we have in **inspector view** in the **end-2-end test** section.
+- Start writing e2e test cases right when you start writing your flows, you can start by copying what we have in **inspector view** in the **end-2-end test** section. Read more in our Documentation: [Evaluating Your Assistant](https://rasa.com/docs/pro/testing/evaluating-assistant/)
 - When you are trying to debug look for these sections in your logs.
   - Always review the prompt in the logs to make sure the right flows and slots are available and check the conversation history to better understand the bot's behavior.
   - Search for `action_list` to see the command that was predicted by CALM, this will help you debug.
@@ -365,8 +320,7 @@ running the command.
     For instance `commands=[StartFlowCommand(flow='bot_challenge')]`
   - Check the **tracker state** in the **inspector view**
   - Add `logging.info` to you custom actions to get more visibility.
-
-
+<br>
 # Next Steps
 - Identify the use cases you would like to add to this assistant.
   - It can be improving the existing two or adding new ones.
@@ -377,10 +331,10 @@ running the command.
 - Create diagrams that illustrates the conversation flow. A conversation designer will be a perfect expert to rely on to accomplish this step.
 - Start building the flows and adding e2e test cases
 - Share the first versions with your colleague to test and provide feedback.
-- Improve, test, re-share 🔁
-
+- Improve, test, re-share.
+<br>
 # Contributing
 Feel free to fork this repo and submit pull requests. Suggestions and improvements are always welcome!
-
+<br>
 # License
 - This project is licensed under the Apache 2.0 License, allowing modification, distribution, and usage with proper attribution.
