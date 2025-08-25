@@ -163,7 +163,7 @@ Here's a brief description of the directories and files in the project root:
 - Install Docker
 - Download Rasa Telecom Starter Pack
 - Starting the Demo Assistant
-<br><br><br>
+<br>
 ## Before You Begin
 
 **To use this starter pack, you will need:**
@@ -172,7 +172,7 @@ Here's a brief description of the directories and files in the project root:
     - If you haven't already, sign up for an account on the OpenAI platform.
     - Then, navigate to the [OpenAI Key Management](https://platform.openai.com/api-keys) (Dashboard > API keys) page and click on the "Create New Secret Key" button to initiate obtaining `<your-openai-api-key>`.
 3. A computer. Instructions are available for MacOS, Linux & Windows.
-<br><br><br>
+<br>
 ## Setting Environment Variables for Rasa
 
 **MacOS, Linux**
@@ -189,7 +189,6 @@ Here's a brief description of the directories and files in the project root:
 4. Check that the variables are set:
     - `echo $RASA_PRO_LICENSE`
     - `echo $OPENAI_API_KEY`
-   
 **Windows**
 1. Press `Win + S` and type `Environment Variables`, then select `Edit the system environment variables`.
 2. In the `System Properties` window, click `Environment Variables`.
@@ -202,7 +201,7 @@ Here's a brief description of the directories and files in the project root:
 7. Verify the variables are set (PowerShell):
     1. `echo $env:RASA_PRO_LICENSE`
     2. `echo $env:OPENAI_API_KEY`
-<br><br><br>
+<br>
 ## Install Docker
 1. Download & install docker:
     - MacOS:   https://docs.docker.com/desktop/setup/install/mac-install/
@@ -215,20 +214,20 @@ Here's a brief description of the directories and files in the project root:
     1. `docker --version`
 5. Download the Rasa Pro Docker image. Open your terminal and run:
     1. `docker pull rasa/rasa-pro:3.13.7`
-<br><br><br>
+<br>
 ## Download Rasa Telecom Starter Pack
 1. Download the Source Code Assets for the [latest release from GitHub](https://github.com/rasa-customers/starterpack-telco-en/releases)
 2. Uncompress the assets in a local directory of your choice.
     1. The **starterpack-telco-en** directory (created when uncompressed) contains a README file with additional instructions on installing dependencies, training the model, and running the assistant locally.
 3. Open your terminal (or PowerShell on Windows) and navigate to the directory where you uncompressed the **starterpack-telco-en** files.
 Congratulations, you have successfully installed Rasa and are ready to use the Telecom Starter Pack as a demo or as a foundation for your custom flows.
-<br><br><br>
+<br>
 ## Starting the Demo Assistant
 To start up the Telecom Demo Assistant, ensure you're in the **starterpack-telco-en** directory.
 1. **Train the Rasa model**
 2. **Start the Rasa Inspector** or
 3. **Start the Rasa Chat Widget**
-<br><br><br>
+<br>
 ## 1. Train the Rasa model
 **MacOS, Linux**
  ```shell
@@ -250,7 +249,7 @@ docker run --rm `
 ```
 You will find your trained model inside the models/ directory.
 You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
-<br><br><br>
+<br><br>
 ## 2. Start the Rasa Inspector
 **MacOS, Linux**
  ```bash
@@ -274,7 +273,7 @@ docker run `
 ```
 1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
 2. In your browser go to: http://localhost:5005/webhooks/socketio/inspect.html
-<br><br><br>
+<br><br>
 ## 3. Start the Rasa Chat Widget
 **MacOS, Linux**
  ```bash
@@ -338,7 +337,7 @@ docker run `
 
 # Contributing
 Feel free to fork this repo and submit pull requests. Suggestions and improvements are always welcome!
-<br>
+<br><br>
 
 # License
 - This project is licensed under the Apache 2.0 License, allowing modification, distribution, and usage with proper attribution.
