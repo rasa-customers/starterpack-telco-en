@@ -168,13 +168,8 @@ Here's a brief description of the directories and files in the project root:
 ## Setting Environment Variables for Rasa
 
 **MacOS, Linux**
-> [!NOTE]
-> These steps apply to both macOS and Linux. On macOS, zsh is usually the default shell (`~/.zshrc`), while on Linux bash is often the default (`~/.bashrc`). Adjust the file name depending on your shell.
-
-<br>
-
 1. Open your terminal, and edit your shell config
-    - `nano ~/.zshrc` (or `~/.bashrc` if you’re using bash)
+    - `nano ~/.zshrc` (or `~/.bashrc` if you’re using Linux bash)
 2. At the bottom of the file, add lines like this (replace the values with your actual keys):
     - `export RASA_PRO_LICENSE=<your-rasa-pro-license-key>`
     - `export OPENAI_API_KEY=sk-<your-openai-api-key>`
@@ -182,11 +177,26 @@ Here's a brief description of the directories and files in the project root:
         - `RASA_PRO_LICENSE=etou948949theu`
         - `OPENAI_API_KEY=sk-proj-ntehoitnhtnoe`
 3. Save the file (`CTRL+O`, `Enter`, `CTRL+X` in nano), then reload it
-    - `source ~/.zshrc`
+    - `source ~/.zshrc`  (or `~/.bashrc` if you’re using Linux bash)
 4. Check that the variables are set:
     - `echo $RASA_PRO_LICENSE`
     - `echo $OPENAI_API_KEY`
    
+**Windows**
+1. Press `Win + S` and type `Environment Variables`, then select `Edit the system environment variables`.
+2. In the `System Properties` window, click `Environment Variables`.
+3. Under `User variables` (applies only to your user), click `New`.
+    1. For `Name`, enter: `RASA_PRO_LICENSE`
+    2. For `Value`, enter: `<your-rasa-pro-license-key>`
+4. Repeat for `OPENAI_API_KEY`.
+5. Click `OK` → `OK` to save and close all windows.
+6. Restart your terminal (PowerShell) so the new values load.
+7. Verify the variables are set (PowerShell):
+    1. `echo $env:RASA_PRO_LICENSE`
+    2. `echo $env:OPENAI_API_KEY`
+<br><br><br>
+## Install Docker
+
 
 
 
