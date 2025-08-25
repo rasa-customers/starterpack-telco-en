@@ -154,6 +154,7 @@ Here's a brief description of the directories and files in the project root:
 
 <br><br><br>
 # Installation - via Docker
+<br>
 
 ## Before you begin
 
@@ -171,6 +172,7 @@ Here's a brief description of the directories and files in the project root:
 > These steps apply to both macOS and Linux. On macOS, zsh is usually the default shell (`~/.zshrc`), while on Linux bash is often the default (`~/.bashrc`). Adjust the file name depending on your shell.
 
 <br>
+
 1. Open your terminal, and edit your shell config
     - `nano ~/.zshrc` (or `~/.bashrc` if you’re using bash)
 2. At the bottom of the file, add lines like this (replace the values with your actual keys):
