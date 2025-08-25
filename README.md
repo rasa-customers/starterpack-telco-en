@@ -197,9 +197,10 @@ Here's a brief description of the directories and files in the project root:
 <br><br><br>
 ## Install Docker
 1. Download & install docker:
-| MacOS | [https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/) |
-| Linux | [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) |
-| Windows | [https://docs.docker.com/desktop/setup/install/windows-install/](https://docs.docker.com/desktop/setup/install/windows-install/)<br>Use WSL 2 backend (not Hyper-V) |
+    - MacOS: [https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/) |
+    - Linux: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) |
+    - Windows: [https://docs.docker.com/desktop/setup/install/windows-install/](https://docs.docker.com/desktop/setup/install/windows-install/)
+        - Use WSL 2 backend (not Hyper-V) |
 3. Start Docker Desktop. Make sure Docker Desktop (the Docker daemon) is running before you run any commands.
     - Windows: Follow prompted instructions for WSL (e.g. `wsl --update`)
 4. Verify Installation. Open your terminal (Mac/Linux shell, or PowerShell on Windows) and run:
@@ -218,9 +219,8 @@ Congratulations, you have successfully installed Rasa and are ready to use the T
 To start up the Telecom Banking Demo Assistant, ensure you're in the **starterpack-telco-en** directory.
 1. **Train the Rasa model**
 2. **Start the Rasa Inspector** or **Start the Rasa Chat Widget**
-
-## Train the Rasa model
-
+<br><br><br>
+## 1 .Train the Rasa model
 **MacOS, Linux**
  ```shell
 docker run --rm \
@@ -230,7 +230,6 @@ docker run --rm \
     rasa/rasa-pro:3.13.7 \
     train
 ```
-
 **Windows (Powershel))**
 ```powershell
 docker run --rm `
