@@ -173,9 +173,27 @@ Here's a brief description of the directories and files in the project root:
     - If you haven't already, sign up for an account on the OpenAI platform.
     - Then, navigate to the [OpenAI Key Management](https://platform.openai.com/api-keys) (Dashboard > API keys) page and click on the "Create New Secret Key" button to initiate obtaining `<your-openai-api-key>`.
 3. A computer. Instructions are available for MacOS, Linux & Windows.
+> **Note for Windows users:**  
+> If you don’t already have `make`, you’ll need to install it:
+>
+> - **Option 1:** Install [Chocolatey](https://chocolatey.org/install).  
+>   👉 Open **PowerShell as Administrator** (Start → search "PowerShell" → right-click → *Run as Administrator*).  
+>   Then run:
+>   ```powershell
+>   choco install make -y
+>   ```
+>   Verify with:
+>   ```powershell
+>   make --version
+>   ```
+>
+> - **Option 2:** Install [Git for Windows](https://git-scm.com/download/win), which includes Git Bash (and `make`).  
+>   Open **Git Bash** instead of PowerShell to run your commands.
 <br>
 
 ## Setting Environment Variables for Rasa
+
+You'll need to save your **Rasa Pro license key** and **OpenAI API key** as environment variables so they can be used by the application.
 
 **MacOS, Linux**
 1. Open your terminal, and edit your shell config
