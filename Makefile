@@ -6,15 +6,21 @@ RASA_VERSION := 3.13.7
 ECHO := @echo
 
 # List phony targets
-.PHONY: help print-variables clean model inspect run test
+.PHONY: print-variables clean model inspect run test help $(HELP_CMDS)
 
-# Cross-platform "make help"
-help: ## Show available targets
-ifeq ($(OS),Windows_NT)
-	@powershell -NoProfile -Command "Get-Content '$(firstword $(MAKEFILE_LIST))' | ForEach-Object { if ($$_ -match '^(?<t>[A-Za-z0-9_-]+):.*?##\s*(?<d>.+)$$') { '{0,-30} {1}' -f $$Matches['t'], $$Matches['d'] } }"
-else
-	@awk -F':.*## ' '/^[A-Za-z0-9_-]+:.*## /{printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(firstword $(MAKEFILE_LIST))
+# Help (cross-platform)
+HELP_CMDS := help model inspect run clean
+HELP_help    := Show available targets
+HELP_model   := Train and validate the Rasa model
+HELP_inspect := Inspect the Rasa model (debug/logging)
+HELP_run     := Start Rasa server (API enabled)
+HELP_clean   := Remove build artifacts
+# Print help text at parse time when `make help` is called
+ifeq ($(filter help,$(MAKECMDGOALS)),help)
+  $(info Available targets:)
+  $(foreach t,$(HELP_CMDS),$(info   $(t)  -  $(HELP_$(t))))
 endif
+help: ; @:
 
 print-variables: ## Print all Makefile variables
 	$(ECHO) "Makefile Variables:"
