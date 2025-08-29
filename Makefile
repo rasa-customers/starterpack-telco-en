@@ -26,6 +26,7 @@ clean:
 ifeq ($(OS), Windows_NT)
   SHELL := powershell.exe
   .SHELLFLAGS := -NoProfile -Command
+  MKDIR_LOG = powershell -NoProfile -Command "New-Item -ItemType Directory -Force logs | Out-Null"
   define RASA_DOCKER_MODEL
     docker run --rm -v "$${PWD}:/app" \
       -e RASA_PRO_LICENSE=$$env:RASA_PRO_LICENSE \
@@ -42,6 +43,7 @@ ifeq ($(OS), Windows_NT)
 else
   SHELL := /bin/bash
   .SHELLFLAGS := -eu -o pipefail -c
+  MKDIR_LOG = mkdir -p logs
   define RASA_DOCKER_MODEL
     docker run --rm -v "$$PWD:/app" \
       -e RASA_PRO_LICENSE="$$RASA_PRO_LICENSE" \
@@ -64,13 +66,13 @@ model:
 # Start Rasa Inspector with logging enabled
 inspect:
 	$(ECHO) "Starting Rasa Inspector with logging..."
-	mkdir -p logs/
+	@$(MKDIR_LOG)
 	$(call RASA_DOCKER, inspect --debug --log-file logs/logs.out)
 
 # Start the Rasa server with logging enabled
 run:
 	$(ECHO) "Starting Rasa Server with logging..."
-	mkdir -p logs/
+	@$(MKDIR_LOG)
 	$(call RASA_DOCKER, run --debug --log-file logs/logs.out --enable-api --cors "*")
 
 # Run end-to-end tests on the Rasa model
