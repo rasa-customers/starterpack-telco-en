@@ -11,8 +11,7 @@ ECHO := @echo
 # Cross-platform "make help"
 help: ## Show available targets
 ifeq ($(OS),Windows_NT)
-	@powershell -NoProfile -Command ^
-	  "Get-Content '$(firstword $(MAKEFILE_LIST))' | % { if ($_ -match '^(?<t>[A-Za-z0-9_-]+):.*?##\s*(?<d>.+)$$') { '{0,-30} {1}' -f $$Matches.t, $$Matches.d } }"
+    @powershell -NoProfile -Command "Get-Content '$(firstword $(MAKEFILE_LIST))' | ForEach-Object { if ($$_ -match '^(?<t>[A-Za-z0-9_-]+):.*?##\s*(?<d>.+)$$') { '{0,-30} {1}' -f $$Matches.t, $$Matches.d } }"
 else
 	@awk -F':.*## ' '/^[A-Za-z0-9_-]+:.*## /{printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(firstword $(MAKEFILE_LIST))
 endif
