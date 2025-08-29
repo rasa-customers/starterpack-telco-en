@@ -1,8 +1,0 @@
-metrics:
-  enabled: true
-  rasa_user_id: 5df5503ab3aa4808ad380af744792863
-  date: '2025-08-28 16:36:06.751563'
-traits:
-  enabled: true
-  rasa_user_id: 5df5503ab3aa4808ad380af744792863
-  date: 2025-08-28 16:36:06.751563
