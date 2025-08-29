@@ -236,7 +236,9 @@ To start up the Telecom Demo Assistant, ensure you're in the **starterpack-telco
 <br>
 
 ## 1. Train the Rasa model
-`make model`<br>
+`make model`
+<br>
+
 You will find your trained model inside the `models/` directory.
 You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
 <br><br>
