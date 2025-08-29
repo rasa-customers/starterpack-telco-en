@@ -9,16 +9,18 @@ ECHO := @echo
 .PHONY: print-variables clean model inspect run test help $(HELP_CMDS)
 
 # Help (cross-platform)
-HELP_CMDS := help model inspect run clean
+HELP_CMDS := help model inspect run clean test print-variables
 HELP_help    := Show available targets
 HELP_model   := Train and validate the Rasa model
 HELP_inspect := Inspect the Rasa model (debug/logging)
 HELP_run     := Start Rasa server (API enabled)
 HELP_clean   := Remove build artifacts
+HELP_test    := Run end-to-end tests on the Rasa model
+HELP_print-variables := Print all Makefile variables
 # Print help text at parse time when `make help` is called
 ifeq ($(filter help,$(MAKECMDGOALS)),help)
   $(info Available targets:)
-  $(foreach t,$(HELP_CMDS),$(info   $(t)  -  $(HELP_$(t))))
+  $(foreach t,$(HELP_CMDS),$(info   $(t) -  $(HELP_$(t))))
 endif
 help: ; @:
 
