@@ -147,7 +147,7 @@ Here's a brief description of the directories and files in the project root:
     - **mappings** : from_llm, and custom
  - **Images** : These images are used in the README
  - **Prompts** : Optional prompts.  You can customize prompt(s) here and refer to them in the config.yml file. The example prompt here looks like the original; the **CHITCHAT** command has been removed and additional details have been added for the `SearchAndReply()`.
- - **Tests** : This is a good way to test the bot's capabilities and ensure the same behavior when doing changes and updates. With Assertions we can track commands and when slots are set. The folder contains 7 test cases, this can help you better understand how the bot function. Results of the current tests are available in the tests folder to illustrate how e2e test works, however you can obtain the same result by running the command `rasa test e2e tests/e2e_test_cases -o`
+ - **Tests** : This is a good way to test the bot's capabilities and ensure the same behavior when doing changes and updates. With Assertions we can track commands and when slots are set. The folder contains 7 test cases, this can help you better understand how the bot function. Results of the current tests are available in the tests folder to illustrate how e2e test works, however you can obtain the same result by running the command `make test`
  - **Config**: We have two sections, the pipeline and the policies
      - the pipeline we have `SearchReadyLLMCommandGenerator` that will convert user messages into commands, we add the LLM we want to use here
      - the policies: two policies are used in this assistant the `FlowPolicy` and the `EnterpriseSearchPolicy`
@@ -236,77 +236,22 @@ To start up the Telecom Demo Assistant, ensure you're in the **starterpack-telco
 <br>
 
 ## 1. Train the Rasa model
-**MacOS, Linux**
- ```shell
-docker run --rm \
-    -v "$PWD":/app \
-    -e RASA_PRO_LICENSE=${RASA_PRO_LICENSE} \
-    -e OPENAI_API_KEY=${OPENAI_API_KEY} \
-    rasa/rasa-pro:3.13.7 \
-    train
-```
-**Windows (Powershell)**
-```powershell
-docker run --rm `
-    -v "${PWD}:/app" `
-    -e RASA_PRO_LICENSE=${env:RASA_PRO_LICENSE} `
-    -e OPENAI_API_KEY=${env:OPENAI_API_KEY} `
-    rasa/rasa-pro:3.13.7 `
-    train
-```
-You will find your trained model inside the models/ directory.
+`make model`
+You will find your trained model inside the `models/` directory.
 You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
 <br><br>
 
 ## 2. Start the Rasa Inspector
-**MacOS, Linux**
- ```bash
-docker run \
-    -v "$PWD"/:/app \
-    -p 5005:5005 \
-    -e RASA_PRO_LICENSE=${RASA_PRO_LICENSE} \
-    -e OPENAI_API_KEY=${OPENAI_API_KEY} \
-    rasa/rasa-pro:3.13.7 \
-    inspect
-```
-**Windows (Powershell)**
-```powershell
-docker run `
-    -v "${PWD}:/app" `
-    -p 5005:5005 `
-    -e RASA_PRO_LICENSE=${env:RASA_PRO_LICENSE} `
-    -e OPENAI_API_KEY=${env:OPENAI_API_KEY} `
-    rasa/rasa-pro:3.13.7 `
-    inspect
-```
+`make inspect`
 1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
 2. In your browser go to: http://localhost:5005/webhooks/socketio/inspect.html
 <br><br>
 
 ## 3. Start the Rasa Chat Widget
-**MacOS, Linux**
- ```bash
-docker run \
-    -v "$PWD"/:/app \
-    -p 5005:5005 \
-    -e RASA_PRO_LICENSE=${RASA_PRO_LICENSE} \
-    -e OPENAI_API_KEY=${OPENAI_API_KEY} \
-    rasa/rasa-pro:3.13.7 \
-   run  --debug --log-file logs.out --enable-api --cors "*"
-```
-**Windows (Powershell)**
-```powershell
-docker run `
-    -v "${PWD}:/app" `
-    -p 5005:5005 `
-    -e RASA_PRO_LICENSE=${env:RASA_PRO_LICENSE} `
-    -e OPENAI_API_KEY=${env:OPENAI_API_KEY} `
-    rasa/rasa-pro:3.13.7 `
-    run --debug --log-file logs.out --enable-api --cors "*"
-```
+`make run`
 1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
 2. Open Finder (Mac) or File Explorer (Windows).
-3. Navigate to the chatwidget directory inside the starterpack-telco-en folder you uncompressed earlier.
+3. Navigate to the chatwidget directory inside the **starterpack-telco-en** folder you uncompressed earlier.
 4. Double-click `index.html` to open the demo in your browser.
 5. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
 <br><br>
@@ -315,6 +260,16 @@ docker run `
 
 > [!NOTE]
 > For a full list of Rasa CLI commands refer to: https://rasa.com/docs/reference/api/command-line-interface/#cheat-sheet
+<br>
+
+## Stopping the Demo Assistant
+1. To stop the Rasa server, return to the terminal window where it is running and press **Ctrl+C**.
+2. That’s it, you’ve successfully run your first Rasa Assistant! You can now close the terminal window if you wish.
+<br>
+
+## Restarting the Demo Assistant
+1. Open your terminal and navigate to the **starterpack-telco-en** directory.
+2. Then, follow the same steps from **Starting the Demo Assistant** to run the assistant again.
 <br>
 
 # Tips
