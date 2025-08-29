@@ -236,7 +236,7 @@ To start up the Telecom Demo Assistant, ensure you're in the **starterpack-telco
 <br>
 
 ## 1. Train the Rasa model
-`make model`
+`make model`<br>
 You will find your trained model inside the `models/` directory.
 You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
 <br><br>
@@ -252,7 +252,7 @@ You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
 1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
 2. Open Finder (Mac) or File Explorer (Windows).
 3. Navigate to the chatwidget directory inside the **starterpack-telco-en** folder you uncompressed earlier.
-4. Double-click `index.html` to open the demo in your browser.
+4. Double-click `chatwidget/index.html` to open the demo in your browser.
 5. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
 <br><br>
 > [!TIP]
