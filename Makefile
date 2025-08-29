@@ -5,9 +5,17 @@ RASA_VERSION := 3.13.7
 # Utility targets for help and variable inspection
 ECHO := @echo
 
-.PHONY: help $(shell grep -E '^[a-zA-Z_-]+:' $(MAKEFILE_LIST) | sed 's/://')
-help:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+# List phony targets
+.PHONY: help print-variables clean model inspect run test
+
+# Cross-platform "make help"
+help: ## Show available targets
+ifeq ($(OS),Windows_NT)
+	@powershell -NoProfile -Command ^
+	  "Get-Content '$(firstword $(MAKEFILE_LIST))' | % { if ($_ -match '^(?<t>[A-Za-z0-9_-]+):.*?##\s*(?<d>.+)$$') { '{0,-30} {1}' -f $$Matches.t, $$Matches.d } }"
+else
+	@awk -F':.*## ' '/^[A-Za-z0-9_-]+:.*## /{printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(firstword $(MAKEFILE_LIST))
+endif
 
 print-variables: ## Print all Makefile variables
 	$(ECHO) "Makefile Variables:"
