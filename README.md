@@ -1,8 +1,8 @@
 # starterpack-telco-en
 
-## Rasa Starter Pack: Telecom in English
+## Rasa Starter Pack: Telecom - English
 <p align="center">
-  <img src="images/Rasa_starterpack_telecom.png" alt="Alt Text">
+  <img src="images/Rasa_starterpack_telecom.png" alt="Rasa Telecom Starter Pack">
 </p>
 
 Rasa has created a new starter pack for building AI assistants in Telecom with the Rasa CALM framework.
@@ -284,7 +284,7 @@ You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
 
 ## Stopping the Demo Assistant
 1. To stop the Rasa server, return to the terminal window where it is running and press **Ctrl+C**.
-2. That’s it, you’ve successfully run your first Rasa Assistant! You can now close the terminal window if you wish.
+2. That's it, you’ve successfully run your first Rasa Assistant! You can now close the terminal window if you wish.
 <br>
 
 ## Restarting the Demo Assistant
@@ -324,4 +324,4 @@ Feel free to fork this repo and submit pull requests. Suggestions and improvemen
 <br><br>
 
 # License
-- This project is licensed under the Apache 2.0 License, allowing modification, distribution, and usage with proper attribution.
+This project is licensed under the Apache 2.0 License, allowing modification, distribution, and usage with proper attribution.
