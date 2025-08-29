@@ -29,9 +29,9 @@ Here's a brief description of the directories and files in the project root:
   - **domain:** Contains domain files for the assistant.
   - **prompts**: Contains Jinja2 template files for generating custom prompts.
   - **tests:** Contains end-to-end test scenarios for the assistant where each subdirectory reflects a suite of tests (i.e. happy path).
-  - **Config:** Contains multiple configuration components for the assistant (i.e. different language models and settings). If Intents are needed then we need the NLU pipeline for it(tokennizer, featurizer, intent classifier ..) and **NLUCommandAdaptor** will be the component that will start a flow based on the intent prediction.
-  - **Credentials**: Contains credentials for various services used by the Rasa assistant (i.e. Chat Widget)
-  - **Endpoints**: Contains endpoint configurations for the Rasa assistant.
+  - **config.yml** Contains configuration components for the assistant (e.g. different language models and settings).
+  - **credentials.yml**: Contains credentials for various services used by the Rasa assistant (e.g. Chat Widget)
+  - **endpoints.yml**: Contains endpoint configurations for the Rasa assistant.
     - How to run the action server is added
     - How to call NLG server
     - How to define the model group
