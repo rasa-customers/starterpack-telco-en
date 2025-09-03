@@ -14,16 +14,18 @@ slots: # list all you slots, it can be in different files per use case for bette
 responses:
   utter_session_start:
     - text: |
-        Hey {customer_first_name} 👋
-        I am your virtual AI assistant that can check your bills or resolve issues with Internet speed.
+        Hi 👋
+        I am your virtual AI assistant that can check your bills or resolve issues with your internet speed.
         How may I help you?
+      metadata:
+        rephrase: True
 
   utter_end_conversation:
     - text: |
         Glad, I helped ✨
-        Have a nice day! 
+        Have a nice day!
 
   utter_bot_challenge:
   - text: |
-      I'm an AI assistant designed to assist you quickly and efficiently. 
+      I'm an AI assistant designed to assist you quickly and efficiently.
       If you ever need to speak with a human agent, just let me know!

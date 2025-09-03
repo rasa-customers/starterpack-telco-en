@@ -40,7 +40,7 @@ Here's a brief description of the directories and files in the project root:
  ![conversation example](images/conversation_example.png)
 # Conversation example
 ##  **First example**:<br>Happy path with solving "internet slow" issue
-  - **Bot**: Hey Serena 👋
+  - **Bot**: Hi 👋
         I am your virtual AI assistant that can check your bills or resolve issues with Internet speed.
         How may I help you?
   - **User**: My internet is slow
@@ -173,11 +173,11 @@ Here's a brief description of the directories and files in the project root:
     - If you haven't already, sign up for an account on the OpenAI platform.
     - Then, navigate to the [OpenAI Key Management](https://platform.openai.com/api-keys) (Dashboard > API keys) page and click on the "Create New Secret Key" button to initiate obtaining `<your-openai-api-key>`.
 3. A computer. Instructions are available for MacOS, Linux & Windows.
-> **Note for Windows users:**  
+> **Note for Windows users:**
 > If you don’t already have `make`, you’ll need to install it:
 >
-> - **Option 1:** Install [Chocolatey](https://chocolatey.org/install).  
->   👉 Open **PowerShell as Administrator** (Start → search "PowerShell" → right-click → *Run as Administrator*).  
+> - **Option 1:** Install [Chocolatey](https://chocolatey.org/install).
+>   👉 Open **PowerShell as Administrator** (Start → search "PowerShell" → right-click → *Run as Administrator*).
 >   Then run:
 >   ```powershell
 >   choco install make -y
@@ -187,7 +187,7 @@ Here's a brief description of the directories and files in the project root:
 >   make --version
 >   ```
 >
-> - **Option 2:** Install [Git for Windows](https://git-scm.com/download/win), which includes Git Bash (and `make`).  
+> - **Option 2:** Install [Git for Windows](https://git-scm.com/download/win), which includes Git Bash (and `make`).
 >   Open **Git Bash** instead of PowerShell to run your commands.
 <br>
 
