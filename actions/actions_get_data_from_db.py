@@ -31,4 +31,4 @@ class ActionGetCustomerInfo(Action):
         #dispatcher.utter_message(response)
 
         # Set the retrieved name in a slot
-        return [ SlotSet("customer_first_name", first_name)]
+        return [SlotSet("customer_first_name", first_name)]

@@ -25,7 +25,6 @@ class ActionVerifyBillByDate(Action):
 
     def run(self, dispatcher, tracker, domain):
         # Load CSV file with billing data
-        file_path = "bills.csv"  # Update with the correct path
         df = pd.read_csv("csvs/billing.csv")
 
         # Get customer ID and date from slots
@@ -83,9 +82,11 @@ class ActionRecapBill(Action):
         # Read the CSV
         df = pd.read_csv(csv_path)
         print(df) # this can be shown in the logs of your custom action, if you want the message to be displayed to the user use 'dispatcher.utter_message'
+
         # Get customer_id and bill_date from slots
         customer_id = tracker.get_slot("customer_id")
         bill_month = tracker.get_slot("bill_month")
+
         # Convert date to datetime
         df["date"] = pd.to_datetime(df["date"])
         bill_date = ActionVerifyBillByDate.text_to_date(bill_month)
@@ -110,13 +111,11 @@ class ActionRecapBill(Action):
         filtered_df = df[(df["customer_id"] == customer_id)]
 
         if filtered_df.empty:
-            dispatcher.utter_message(f"No transactions found for customer {customer_id} on {bill_date_text}.")
+            dispatcher.utter_message(f"No transactions found for customer {customer_id} on {bill_date}.")
             return []
 
         # Format the output
-        response1= (
-            "Here is a summary of your costs :"
-            )
+        response1 = "Here is a summary of your costs:"
         dispatcher.utter_message(response1)
         response = "\n".join([
             f"{row['date'].strftime('%b. %-d, %Y')} | ${row['amount']:.2f} | {row['source']}" for _, row in filtered_df.iterrows()
@@ -124,5 +123,4 @@ class ActionRecapBill(Action):
 
         # Send response to user
         dispatcher.utter_message(response)
-        #print("response here:", response)
         return []

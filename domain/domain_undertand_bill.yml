@@ -26,7 +26,7 @@ slots:
     type: float
     mappings:
       - type: controlled
-      
+
   user_authenticated:
     type: bool
     mappings:
@@ -59,10 +59,6 @@ slots:
         - type: from_llm
 
 responses:
-  utter_ask_customer_id:
-    - text: |
-        Can you please provide me your customer id?
-
   utter_ask_bill_month:
     - text: |
         Alright. Could you please specify the month? 📅
@@ -74,11 +70,11 @@ responses:
         - title: "Yes, please"
           payload: "/SetSlots(breakdown_cost=True)"
         - title: "No, all good"
-          payload: "/SetSlots(breakdown_cost=False)" 
+          payload: "/SetSlots(breakdown_cost=False)"
 
   utter_ask_issue_solved:
     - text: |
-        Did I manage to provide all the information you need? 
+        Did I manage to provide all the information you need?
       buttons:
         - title: "Yes, all good"
           payload: "/SetSlots(issue_solved=True)"
@@ -100,4 +96,3 @@ responses:
           I've provided a quick summary of your bill ⤵️
           For full details, please log in to your account and check your billing history here:
           https://companyName/account/your-bills 🔗
-
