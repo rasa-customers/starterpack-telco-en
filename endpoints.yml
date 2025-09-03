@@ -11,12 +11,16 @@
 # https://rasa.com/docs/rasa-pro/concepts/custom-actions
 action_endpoint:
   actions_module: "actions"
+  # You can use url endpoint to have a separate action server for debugging
+  # url: http://localhost:5055/webhook
 
 # Allow and what LLM handles rephrasing of responses
 nlg:
   type: rephrase
   llm:
     model_group: gpt-4o-mini
+  # To override the default rephraser prompt
+  #prompt: prompts/rephraser_demo_personality_prompt.jinja2
 
 # Model Groups - Integrate with different LLM providers
 # https://rasa.com/docs/reference/config/components/llm-configuration/#model-groups
