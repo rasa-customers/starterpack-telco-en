@@ -9,7 +9,7 @@ flows:
       - collect: breakdown_cost
         description: |
           This slot is boolean variable. it holds one of two possible values: true or false
-          (breakdown_cost = True, breakdown_cost = False), and if the user says "yup," it should be considered True, while "nope" should be considered False 
+          (breakdown_cost = True, breakdown_cost = False), and if the user says "yup," it should be considered True, while "nope" should be considered False
           (e.g., breakdown_cost = True for "yup", breakdown_cost = False for "nope").
         ask_before_filling: true # This can be useful some LLMs will prefill bool slots here we make it mandatory for the bot to ask the user
         next:
@@ -30,7 +30,7 @@ flows:
         collect: issue_solved
         description: |
           This slot is boolean variable. it holds one of two possible values: true or false
-          (issue_solved = True, issue_solved = False), and if the user says "yup" it should be considered True, while "nope" should be considered False 
+          (issue_solved = True, issue_solved = False), and if the user says "yup" it should be considered True, while "nope" should be considered False
           (e.g., issue_solved = True for "yup", issue_solved = False for "nope").
         ask_before_filling: true
         next:
@@ -38,9 +38,8 @@ flows:
             then:
               - action: utter_connect_to_human
               - action: action_sleep_few_sec
-              -  link: pattern_human_handoff
-            
+              -  link: flow_speak_with_human
+
           - else:
             - action: utter_end_conversation
               next: "END"
-            
