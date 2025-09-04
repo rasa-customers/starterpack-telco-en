@@ -23,7 +23,7 @@ test_results:
     - slot_was_set:
       - name: "reboot_router"
         value: false
-    - flow_started: "pattern_human_handoff"
+    - flow_started: "flow_speak_with_human"
   error_path: tests/e2e_test_cases/internet_slow_test_case.yml:15
   assertion_failure:
     assertion:

@@ -1,4 +1,3 @@
-
 responses:
   utter_more_help_needed_handoff_pattern: # add more information here, if you need this to connect to specific channel..
     - text: "Please hold on while I connect you to our expert 📲"

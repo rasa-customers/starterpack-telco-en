@@ -22,7 +22,7 @@ test_cases:
         - slot_was_set:
             - name: "reboot_router"
               value: False
-        - flow_started: "pattern_human_handoff"
+        - flow_started: "flow_speak_with_human"
 
 
   - test_case: Solving Internet issue not slow
@@ -43,5 +43,5 @@ test_cases:
         - bot_uttered:
             utter_name: "utter_ask_more_help_needed"
     - user: "/SetSlots(more_help_needed=True)"
-      assertions: 
-       - flow_started: "pattern_human_handoff"
+      assertions:
+       - flow_started: "flow_speak_with_human"

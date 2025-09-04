@@ -8,6 +8,6 @@ test_cases:
               utter_name: "utter_bot_challenge"
     - user: "Indeed, I would like to speak with a human"
       assertions:
-        - flow_started: "pattern_human_handoff"
+        - flow_started: "flow_speak_with_human"
         - bot_uttered:
               utter_name: "utter_more_help_needed_handoff_pattern"
