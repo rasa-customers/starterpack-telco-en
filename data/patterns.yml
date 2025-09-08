@@ -15,3 +15,11 @@ flows:
       - action: action_get_customer_info
       - action: utter_session_start
       - action: action_session_start
+
+  pattern_search:
+    description: Flow for handling knowledge-based questions
+    name: pattern search
+    steps:
+      - id: 0_action_trigger_search
+        next: END
+        action: action_trigger_search

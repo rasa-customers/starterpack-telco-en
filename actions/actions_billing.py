@@ -1,12 +1,18 @@
-import pandas as pd
-from rasa_sdk import Action
+from typing import Any, Dict, List, Text
+
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
+
+import pandas as pd
 from datetime import datetime
 import logging
 
 class ActionVerifyBillByDate(Action):
     def name(self):
         return "action_verify_bill_by_date"
+    @staticmethod
     def text_to_date(month_text):
         try:
             # Get the current year
@@ -23,15 +29,19 @@ class ActionVerifyBillByDate(Action):
         except ValueError:
             return "Invalid format. Please use a full month name (e.g., 'March')."
 
-    def run(self, dispatcher, tracker, domain):
+    async def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict
+    ) -> List[Dict[Text, Any]]:
         # Load CSV file with billing data
         df = pd.read_csv("csvs/billing.csv")
 
         # Get customer ID and date from slots
         customer_id = tracker.get_slot("customer_id")
         bill_month = tracker.get_slot("bill_month")
-        #logging.info(f"This is an info message: bill_month : {bill_month}")
 
+        if bill_month is None:
+            dispatcher.utter_message("Please specify the month for the bill you want to check.")
+            return []
         bill_date = ActionVerifyBillByDate.text_to_date(bill_month)
         #logging.info(f"This is an info message: bill_month after transformation: {bill_date}")
 
@@ -51,19 +61,26 @@ class ActionVerifyBillByDate(Action):
         customer_bills = df[df["customer_id"] == int(customer_id)]
         specific_bill = customer_bills[customer_bills["date"] == bill_date]
 
-        if specific_bill.empty:
+        # Get the bill amount from the filtered data
+        if len(specific_bill) == 0:
             dispatcher.utter_message(f"No bill found for {bill_date.date()}.")
             return []
 
-        bill_amount = specific_bill.iloc[0]["amount"]
+        # Get the first (and should be only) row's amount
+        try:
+            bill_amount = float(specific_bill['amount'].iloc[0])  # type: ignore
+        except (IndexError, AttributeError):
+            dispatcher.utter_message(f"No bill found for {bill_date.date()}.")
+            return []
+
         average_bill = customer_bills["amount"].mean()
         difference = bill_amount - average_bill
 
         # Generate response
         response = (
-                f"Your bill for {bill_month} {bill_date.date().year} is ${bill_amount:.2f}. " + "\n"
-                f"The average of your past bills is ${average_bill:.2f}. " + "\n"
-                f"This bill is {'higher' if difference > 0 else 'lower'} than your average by ${abs(difference):.2f}.")
+            f"Your bill for {bill_month} {bill_date.date().year} is ${bill_amount:.2f}. " + "\n"
+            f"The average of your past bills is ${average_bill:.2f}. " + "\n"
+            f"This bill is {'higher' if difference > 0 else 'lower'} than your average by ${abs(difference):.2f}.")
 
         dispatcher.utter_message(response)
         return [SlotSet("bill_amount", int(bill_amount)),
@@ -75,7 +92,9 @@ class ActionRecapBill(Action):
     def name(self):
         return "action_recap_bill"
 
-    def run(self, dispatcher, tracker, domain):
+    async def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict
+    ) -> List[Dict[Text, Any]]:
         # Path to the CSV file (Update path if necessary)
         csv_path = "csvs/billing.csv"
 
@@ -114,11 +133,15 @@ class ActionRecapBill(Action):
             dispatcher.utter_message(f"No transactions found for customer {customer_id} on {bill_date}.")
             return []
 
+        # Ensure the date column is properly converted to datetime
+        filtered_df = filtered_df.copy()
+        filtered_df["date"] = pd.to_datetime(filtered_df["date"])
+
         # Format the output
         response1 = "Here is a summary of your costs:"
         dispatcher.utter_message(response1)
         response = "\n".join([
-            f"{row['date'].strftime('%b. %-d, %Y')} | ${row['amount']:.2f} | {row['source']}" for _, row in filtered_df.iterrows()
+            f"{pd.to_datetime(row['date']).strftime('%b. %-d, %Y')} | ${row['amount']:.2f} | {row['source']}" for _, row in filtered_df.iterrows()
         ])
 
         # Send response to user
