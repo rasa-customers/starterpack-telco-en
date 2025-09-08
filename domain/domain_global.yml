@@ -29,3 +29,8 @@ responses:
   - text: |
       I'm an AI assistant designed to assist you quickly and efficiently.
       If you ever need to speak with a human agent, just let me know!
+
+  utter_help:
+    - text: "I am your Telecom assistant. I can help you check your bills or resolve issues with your internet speed."
+      metadata:
+        rephrase: True
