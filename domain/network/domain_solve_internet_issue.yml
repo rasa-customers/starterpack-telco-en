@@ -17,7 +17,7 @@ responses:
     - text: |
         I will run a network diagnostics for you 🛜
         Wait a moment please...
-      image: "https://static.vecteezy.com/system/resources/previews/002/785/641/non_2x/speed-test-internet-measure-icon-illustration-free-vector.jpg"
+      image: "https://se-prod-rasa.s3.us-east-1.amazonaws.com/images/telco-speed-test.png"
   utter_acknowledge_speed_test_not_good:
   - text: |
       Your network download speed is {network_speed} Mbps.
