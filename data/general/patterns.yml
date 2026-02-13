@@ -14,7 +14,6 @@ flows:
     steps:
       - action: action_get_customer_info
       - action: utter_session_start
-      - action: action_session_start
 
   pattern_search:
     description: Flow for handling knowledge-based questions

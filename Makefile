@@ -41,13 +41,13 @@ ifeq ($(OS), Windows_NT)
   CLEAN_LOGS = powershell -NoProfile -Command "Remove-Item -Recurse -Force -ErrorAction SilentlyContinue .rasa\*, models\*, logs\*; Get-ChildItem -Recurse -Include *.pyc,*.pyo -Force | Remove-Item -Force -ErrorAction SilentlyContinue; Get-ChildItem -Recurse -Filter '*~' -Force | Remove-Item -Force -ErrorAction SilentlyContinue"
   define RASA_DOCKER_MODEL
     docker run --rm -v "$${PWD}:/app" \
-      -e RASA_PRO_LICENSE=$$env:RASA_PRO_LICENSE \
+      -e RASA_PRO_LICENSE=$$env:RASA_LICENSE \
       -e OPENAI_API_KEY=$$env:OPENAI_API_KEY \
       rasa/rasa-pro:$(RASA_VERSION) $(1)
   endef
   define RASA_DOCKER
     docker run -v "$${PWD}:/app" -p 5005:5005 \
-      -e RASA_PRO_LICENSE=$$env:RASA_PRO_LICENSE \
+      -e RASA_PRO_LICENSE=$$env:RASA_LICENSE \
       -e OPENAI_API_KEY=$$env:OPENAI_API_KEY \
       rasa/rasa-pro:$(RASA_VERSION) $(1)
   endef
@@ -59,13 +59,13 @@ else
   CLEAN_LOGS = rm -rf .rasa/* models/* logs/* || true; find . -type f \( -name '*.py[co]' -o -name '*~' \) -delete
   define RASA_DOCKER_MODEL
     docker run --rm -v "$$PWD:/app" \
-      -e RASA_PRO_LICENSE="$$RASA_PRO_LICENSE" \
+      -e RASA_PRO_LICENSE="$$RASA_LICENSE" \
       -e OPENAI_API_KEY="$$OPENAI_API_KEY" \
       rasa/rasa-pro:$(RASA_VERSION) $(1)
   endef
   define RASA_DOCKER
     docker run -v "$$PWD:/app" -p 5005:5005 \
-      -e RASA_PRO_LICENSE="$$RASA_PRO_LICENSE" \
+      -e RASA_PRO_LICENSE="$$RASA_LICENSE" \
       -e OPENAI_API_KEY="$$OPENAI_API_KEY" \
       rasa/rasa-pro:$(RASA_VERSION) $(1)
   endef
