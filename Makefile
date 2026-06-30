@@ -23,9 +23,9 @@ ECHO := @echo
 HELP_CMDS := help model inspect run chat clean test print-variables
 HELP_help    := Show available targets
 HELP_model   := Train and validate the Rasa model
-HELP_inspect := Inspect the Rasa model (debug/logging)
-HELP_run     := Start Rasa server (API enabled)
-HELP_chat    := Serve the chat widget and open it in your browser
+HELP_inspect := Launch Inspector + Rasa + actions and open it in the browser
+HELP_run     := Start the Rasa server only (API enabled, no UI)
+HELP_chat    := Launch chat widget + Rasa + actions and open it in the browser
 HELP_clean   := Remove build artifacts
 HELP_test    := Run end-to-end tests on the Rasa model
 HELP_print-variables := Print all Makefile variables
@@ -63,8 +63,10 @@ ifeq ($(OS), Windows_NT)
       -e OPENAI_API_KEY=$$env:OPENAI_API_KEY \
       rasa/rasa-pro:$(RASA_VERSION) $(1)
   endef
-  # Serve the chat widget over http and open it in the default browser.
-  SERVE_WIDGET = Start-Process "http://localhost:$(CHAT_PORT)"; python -m http.server $(CHAT_PORT) --directory chatwidget
+  # `make chat` pre-launch: serve the widget, then open it after a short delay.
+  CHAT_PRELAUNCH = Start-Process python -ArgumentList '-m','http.server','$(CHAT_PORT)','--directory','chatwidget' -WindowStyle Hidden; Start-Job { Start-Sleep 10; Start-Process 'http://localhost:$(CHAT_PORT)' } | Out-Null;
+  # `make inspect` pre-launch: open the Inspector after a short delay.
+  INSPECT_PRELAUNCH = Start-Job { Start-Sleep 10; Start-Process 'http://localhost:5005/webhooks/socketio/inspect.html' } | Out-Null;
 # MacOS and Linux
 else
   SHELL := /bin/bash
@@ -90,8 +92,12 @@ else
   endef
   # Pick the right "open URL" command: open on macOS, xdg-open on Linux.
   OPEN_URL := $(shell command -v open >/dev/null 2>&1 && echo open || echo xdg-open)
-  # Serve the chat widget over http, then open it in the browser once the server is up.
-  SERVE_WIDGET = ( sleep 1 && $(OPEN_URL) "http://localhost:$(CHAT_PORT)" ) & python3 -m http.server $(CHAT_PORT) --directory chatwidget
+  # `make chat` pre-launch: serve the widget in the background, open it once the
+  # Rasa server answers on :5005 (so the greeting fires), and stop the widget
+  # server on exit. Ends with `&` so the docker run that follows is foreground.
+  CHAT_PRELAUNCH = python3 -m http.server $(CHAT_PORT) --directory chatwidget >logs/widget.log 2>&1 & WIDGET_PID=$$!; trap 'kill $$WIDGET_PID 2>/dev/null' EXIT INT TERM; ( for _ in $$(seq 1 90); do curl -sf -o /dev/null http://localhost:5005/ && break; sleep 1; done; $(OPEN_URL) "http://localhost:$(CHAT_PORT)" ) &
+  # `make inspect` pre-launch: open the Inspector once Rasa answers on :5005.
+  INSPECT_PRELAUNCH = ( for _ in $$(seq 1 90); do curl -sf -o /dev/null http://localhost:5005/ && break; sleep 1; done; $(OPEN_URL) "http://localhost:5005/webhooks/socketio/inspect.html" ) &
 endif
 
 #####
@@ -105,11 +111,11 @@ model:
 	$(ECHO) "Training Rasa model..."
 	$(call RASA_DOCKER_MODEL, train)
 
-# Start Rasa Inspector with logging enabled
+# Start the Rasa Inspector (Rasa server + in-process actions) and open it.
 inspect:
-	$(ECHO) "Starting Rasa Inspector with logging..."
+	$(ECHO) "Starting Rasa Inspector (Rasa + in-process actions). Ctrl+C to stop..."
 	@$(MKDIR_LOG)
-	$(call RASA_DOCKER, inspect --debug --log-file logs/logs.out)
+	@$(INSPECT_PRELAUNCH) $(call RASA_DOCKER, inspect --debug --log-file logs/logs.out)
 
 # Start the Rasa server with logging enabled
 run:
@@ -117,12 +123,13 @@ run:
 	@$(MKDIR_LOG)
 	$(call RASA_DOCKER, run --debug --log-file logs/logs.out --enable-api --cors "*")
 
-# Serve the chat widget and open it in the browser.
-# Run this in a second terminal while `make run` is up (the widget talks to the
-# Rasa server at http://localhost:5005). Press Ctrl+C to stop the widget server.
+# Start everything for the demo in one command: the Rasa server (with in-process
+# actions) plus the chat widget, then open the widget once Rasa is ready.
+# Ctrl+C stops both.
 chat:
-	$(ECHO) "Serving chat widget at http://localhost:$(CHAT_PORT) (Ctrl+C to stop)..."
-	$(SERVE_WIDGET)
+	$(ECHO) "Starting chat widget + Rasa (with in-process actions). Ctrl+C to stop..."
+	@$(MKDIR_LOG)
+	@$(CHAT_PRELAUNCH) $(call RASA_DOCKER, run --debug --log-file logs/logs.out --enable-api --cors "*")
 
 # Run end-to-end tests on the Rasa model
 test:

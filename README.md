@@ -271,18 +271,17 @@ You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
 
 ## 2. Start the Rasa Inspector
 `make inspect`
-1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
-2. In your browser go to: http://localhost:5005/webhooks/socketio/inspect.html
+- One command: starts the Rasa server with your custom actions (in-process) and opens the Inspector in your browser once it's ready. Press **Ctrl+C** to stop.
+- The Inspector is the best tool for debugging — it shows active flows, slots, and the commands CALM predicts.
 <br><br>
 
 ## 3. Start the Rasa Chat Widget
-1. Start the Rasa server: `make run`
-2. Once you see the “Starting worker” message, open a **second terminal** in the same folder and run: `make chat`
-3. This serves the widget at http://localhost:8000 and opens it in your browser automatically. (Press **Ctrl+C** in that terminal to stop the widget server.)
-4. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
+`make chat`
+- One command: starts the Rasa server with your custom actions (in-process) **and** the chat widget, then opens the widget in your browser once Rasa is ready (so the assistant greets you). Press **Ctrl+C** to stop everything.
+- You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
 
 > [!NOTE]
-> Prefer to open it manually? You can still open `chatwidget/index.html` directly in your browser. `make chat` just serves it over http for a cleaner URL.
+> `make run` starts only the Rasa server (API enabled, no UI) — use it for headless/API testing. `make chat` and `make inspect` are the all-in-one demo commands. You can also still open `chatwidget/index.html` directly in your browser if you prefer.
 <br><br>
 > [!TIP]
 > You can also edit chatwidget/index.html to customize the look and behavior of the demo.
