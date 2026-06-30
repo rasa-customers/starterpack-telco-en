@@ -9,6 +9,11 @@ import pandas as pd
 from datetime import datetime
 import logging
 
+# Dates in csvs/billing.csv and the queries we build are month-first (MM/DD/YYYY),
+# with the day fixed to the 1st (one bill per month). Parse explicitly with this
+# format everywhere so behaviour never depends on pandas' locale-sensitive inference.
+DATE_FORMAT = "%m/%d/%Y"
+
 class ActionVerifyBillByDate(Action):
     def name(self):
         return "action_verify_bill_by_date"
@@ -21,13 +26,14 @@ class ActionVerifyBillByDate(Action):
             full_text = f"{month_text} {current_year}"
             # Parse the text format (e.g., "March 2025")
             date_obj = datetime.strptime(full_text, "%B %Y")
-            # Format as DD/MM/YYYY (defaults to the first day of the month)
-            formatted_date = date_obj.strftime("01/%m/%Y")
+            # Format as MM/DD/YYYY with the day fixed to the 1st, matching the CSV.
+            formatted_date = date_obj.strftime(DATE_FORMAT)
 
             logging.info(f"This is an info message: formatted_date: {formatted_date}")
             return formatted_date
-        except ValueError:
-            return "Invalid format. Please use a full month name (e.g., 'March')."
+        except (ValueError, TypeError):
+            # Return None so the callers' `if not bill_date` guards catch bad input.
+            return None
 
     async def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict
@@ -54,8 +60,8 @@ class ActionVerifyBillByDate(Action):
             return []
 
         # Convert date to datetime
-        df["date"] = pd.to_datetime(df["date"])
-        bill_date = pd.to_datetime(bill_date)
+        df["date"] = pd.to_datetime(df["date"], format=DATE_FORMAT)
+        bill_date = pd.to_datetime(bill_date, format=DATE_FORMAT)
 
         # Filter data for the given customer and date
         customer_bills = df[df["customer_id"] == int(customer_id)]
@@ -107,9 +113,8 @@ class ActionRecapBill(Action):
         bill_month = tracker.get_slot("bill_month")
 
         # Convert date to datetime
-        df["date"] = pd.to_datetime(df["date"])
+        df["date"] = pd.to_datetime(df["date"], format=DATE_FORMAT)
         bill_date = ActionVerifyBillByDate.text_to_date(bill_month)
-        bill_date = pd.to_datetime(bill_date)
 
         if not customer_id:
             dispatcher.utter_message("I need your customer ID to fetch your bill recap.")
