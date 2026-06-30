@@ -106,7 +106,6 @@ class ActionRecapBill(Action):
 
         # Read the CSV
         df = pd.read_csv(csv_path)
-        print(df) # this can be shown in the logs of your custom action, if you want the message to be displayed to the user use 'dispatcher.utter_message'
 
         # Get customer_id and bill_date from slots
         customer_id = tracker.get_slot("customer_id")

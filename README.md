@@ -71,7 +71,7 @@ Here's a brief description of the directories and files in the project root:
             Alright. Could you please specify the month? 📅
   - **User**: Feb
   - **Bot**: <BR>
-            Your bill for February 2025 is $55.00.<BR>
+            Your bill for February 2026 is $55.00.<BR>
             The average of your past bills is $88.50.<BR>
             This bill is lower than your average by $33.50.<BR>
             Would you like to see the breakdown of the costs?
@@ -111,7 +111,7 @@ Here's a brief description of the directories and files in the project root:
 ##  **Fourth example**:<br>Digression and updating an information during the conversation
   - **User**: I would like to verify my expenses for January's bill
   - **Bot**: <BR>
-           Your bill for January 2025 is $150.50. <BR>
+           Your bill for January 2026 is $150.50. <BR>
            The average of your past bills is $88.50. <BR>
            This bill is higher than your average by $62.00.<BR>
   - **Bot**: <BR>
@@ -119,7 +119,7 @@ Here's a brief description of the directories and files in the project root:
   - **User**: oh no I meant February
   - **Bot**: <BR>
           Alright, I'm changing the bill month to February for you.
-          Your bill for February 2025 is $55.00.<BR>
+          Your bill for February 2026 is $55.00.<BR>
           The average of your past bills is $88.50.<BR>
           This bill is lower than your average by $33.50. <BR>
   - **Bot**: <BR>
