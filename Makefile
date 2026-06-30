@@ -1,6 +1,14 @@
 # Your Rasa version
 RASA_VERSION := 3.16.0
 
+# Load secrets (RASA_LICENSE, OPENAI_API_KEY) from a local .env if present, then
+# export them so they reach the docker `-e` flags below. .env is gitignored.
+# Format: plain KEY=value lines (no `export`, no surrounding quotes).
+-include .env
+# Rasa expects RASA_LICENSE; accept RASA_PRO_LICENSE as an alias if that's what's set.
+RASA_LICENSE ?= $(RASA_PRO_LICENSE)
+export
+
 #####
 # Utility targets for help and variable inspection
 ECHO := @echo
