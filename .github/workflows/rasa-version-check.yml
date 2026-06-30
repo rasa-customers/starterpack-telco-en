@@ -1,0 +1,90 @@
+name: Weekly Rasa version check
+
+# Once a week, check PyPI for a newer stable rasa-pro release. If there is one,
+# bump the Makefile, train the model and run the deterministic e2e tests against
+# the new version, and open a PR for review if everything passes.
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays at 06:00 UTC
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve current and latest stable Rasa versions
+        id: ver
+        run: |
+          set -euo pipefail
+          current="$(grep -E '^RASA_VERSION :=' Makefile | sed -E 's/^RASA_VERSION := *//')"
+          out="$(curl -fsSL https://pypi.org/pypi/rasa-pro/json | CURRENT="$current" python3 -c '
+          import sys, os, json, re
+          cur = tuple(map(int, os.environ["CURRENT"].split(".")))
+          d = json.load(sys.stdin)
+          # Stable releases only (skip alpha/beta/rc/dev), highest version wins.
+          vs = sorted(tuple(map(int, v.split("."))) for v, f in d["releases"].items()
+                      if f and re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", v))
+          latest = vs[-1]
+          print(".".join(map(str, latest)), "true" if latest > cur else "false")
+          ')"
+          latest="${out% *}"; newer="${out#* }"
+          echo "current=$current" >> "$GITHUB_OUTPUT"
+          echo "latest=$latest"   >> "$GITHUB_OUTPUT"
+          echo "newer=$newer"     >> "$GITHUB_OUTPUT"
+          if [ "$newer" = "true" ]; then
+            echo "::notice::New stable Rasa available: $current -> $latest"
+          else
+            echo "::notice::Already on the latest stable Rasa ($current)."
+          fi
+
+      - name: Bump RASA_VERSION in the Makefile
+        if: steps.ver.outputs.newer == 'true'
+        run: |
+          sed -i -E "s/^RASA_VERSION := .*/RASA_VERSION := ${{ steps.ver.outputs.latest }}/" Makefile
+          grep -E '^RASA_VERSION :=' Makefile
+
+      - name: Train and run the deterministic e2e tests on the new version
+        if: steps.ver.outputs.newer == 'true'
+        env:
+          RASA_LICENSE: ${{ secrets.RASA_LICENSE }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          make model
+          # Gate only on the deterministic suites. The out_of_scope and patterns
+          # suites depend on non-deterministic LLM output (command routing and
+          # generative-answer grounding) and would flake regardless of Rasa version,
+          # so they are not a reliable version-compatibility signal.
+          make test TEST_PATH="tests/e2e_test_cases/billing_test_cases.yml tests/e2e_test_cases/global_test_cases.yml tests/e2e_test_cases/internet_slow_test_case.yml"
+
+      - name: Open a PR with the version bump
+        if: steps.ver.outputs.newer == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: Makefile
+          branch: chore/bump-rasa-${{ steps.ver.outputs.latest }}
+          commit-message: "Bump Rasa to ${{ steps.ver.outputs.latest }}"
+          title: "Bump Rasa to ${{ steps.ver.outputs.latest }}"
+          body: |
+            Automated weekly check found a newer **stable** Rasa Pro release.
+
+            - Current: `${{ steps.ver.outputs.current }}`
+            - Latest stable: `${{ steps.ver.outputs.latest }}`
+
+            On the new version, CI **trained the model** and the **deterministic** e2e
+            suites passed:
+            - `billing_test_cases.yml`
+            - `global_test_cases.yml`
+            - `internet_slow_test_case.yml`
+
+            Before merging, please:
+            - Review the [Rasa Pro changelog](https://rasa.com/docs/reference/changelogs/rasa-pro-changelog/)
+              and [migration guide](https://rasa.com/docs/reference/changelogs/rasa-pro-migration-guide/),
+              especially for minor/major bumps.
+            - Locally sanity-check the LLM-dependent suites that CI does not gate on
+              (`out_of_scope_test_case.yml` and `patterns_test_cases.yml`).

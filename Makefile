@@ -4,6 +4,10 @@ RASA_VERSION := 3.16.10
 # Port used by `make chat` to serve the chat widget
 CHAT_PORT := 8000
 
+# Default e2e test path. Override to run a subset, e.g.
+#   make test TEST_PATH="tests/e2e_test_cases/billing_test_cases.yml"
+TEST_PATH ?= tests/
+
 # Load secrets (RASA_LICENSE, OPENAI_API_KEY) from a local .env if present, then
 # export them so they reach the docker `-e` flags below. .env is gitignored.
 # Format: plain KEY=value lines (no `export`, no surrounding quotes).
@@ -131,7 +135,7 @@ chat:
 	@$(MKDIR_LOG)
 	@$(CHAT_PRELAUNCH) $(call RASA_DOCKER, run --debug --log-file logs/logs.out --enable-api --cors "*")
 
-# Run end-to-end tests on the Rasa model
+# Run end-to-end tests on the Rasa model (override TEST_PATH to run a subset)
 test:
 	$(ECHO) "Testing Rasa model..."
-	$(call RASA_DOCKER, test e2e tests/)
+	$(call RASA_DOCKER, test e2e $(TEST_PATH))
