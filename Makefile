@@ -1,5 +1,5 @@
 # Your Rasa version
-RASA_VERSION := 3.16.10
+RASA_VERSION := 3.17.0
 
 # Port used by `make chat` to serve the chat widget
 CHAT_PORT := 8000
