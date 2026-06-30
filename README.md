@@ -276,12 +276,13 @@ You can now test your assistant using the Rasa Inspector or Rasa Chat Widget.
 <br><br>
 
 ## 3. Start the Rasa Chat Widget
-`make run`
-1. Once you see the “Starting worker” message in your terminal, proceed to the next step.
-2. Open Finder (Mac) or File Explorer (Windows).
-3. Navigate to the chatwidget directory inside the **starterpack-telco-en** folder you uncompressed earlier.
-4. Double-click `chatwidget/index.html` to open the demo in your browser.
-5. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
+1. Start the Rasa server: `make run`
+2. Once you see the “Starting worker” message, open a **second terminal** in the same folder and run: `make chat`
+3. This serves the widget at http://localhost:8000 and opens it in your browser automatically. (Press **Ctrl+C** in that terminal to stop the widget server.)
+4. You can now interact with the Telco Demo Assistant using Rasa’s chat widget.
+
+> [!NOTE]
+> Prefer to open it manually? You can still open `chatwidget/index.html` directly in your browser. `make chat` just serves it over http for a cleaner URL.
 <br><br>
 > [!TIP]
 > You can also edit chatwidget/index.html to customize the look and behavior of the demo.

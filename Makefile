@@ -1,6 +1,9 @@
 # Your Rasa version
 RASA_VERSION := 3.16.10
 
+# Port used by `make chat` to serve the chat widget
+CHAT_PORT := 8000
+
 # Load secrets (RASA_LICENSE, OPENAI_API_KEY) from a local .env if present, then
 # export them so they reach the docker `-e` flags below. .env is gitignored.
 # Format: plain KEY=value lines (no `export`, no surrounding quotes).
@@ -14,14 +17,15 @@ export
 ECHO := @echo
 
 # List phony targets
-.PHONY: print-variables clean model inspect run test help $(HELP_CMDS)
+.PHONY: print-variables clean model inspect run chat test help $(HELP_CMDS)
 
 # Help (cross-platform)
-HELP_CMDS := help model inspect run clean test print-variables
+HELP_CMDS := help model inspect run chat clean test print-variables
 HELP_help    := Show available targets
 HELP_model   := Train and validate the Rasa model
 HELP_inspect := Inspect the Rasa model (debug/logging)
 HELP_run     := Start Rasa server (API enabled)
+HELP_chat    := Serve the chat widget and open it in your browser
 HELP_clean   := Remove build artifacts
 HELP_test    := Run end-to-end tests on the Rasa model
 HELP_print-variables := Print all Makefile variables
@@ -59,6 +63,8 @@ ifeq ($(OS), Windows_NT)
       -e OPENAI_API_KEY=$$env:OPENAI_API_KEY \
       rasa/rasa-pro:$(RASA_VERSION) $(1)
   endef
+  # Serve the chat widget over http and open it in the default browser.
+  SERVE_WIDGET = Start-Process "http://localhost:$(CHAT_PORT)"; python -m http.server $(CHAT_PORT) --directory chatwidget
 # MacOS and Linux
 else
   SHELL := /bin/bash
@@ -82,6 +88,10 @@ else
       -e OPENAI_API_KEY="$$OPENAI_API_KEY" \
       rasa/rasa-pro:$(RASA_VERSION) $(1)
   endef
+  # Pick the right "open URL" command: open on macOS, xdg-open on Linux.
+  OPEN_URL := $(shell command -v open >/dev/null 2>&1 && echo open || echo xdg-open)
+  # Serve the chat widget over http, then open it in the browser once the server is up.
+  SERVE_WIDGET = ( sleep 1 && $(OPEN_URL) "http://localhost:$(CHAT_PORT)" ) & python3 -m http.server $(CHAT_PORT) --directory chatwidget
 endif
 
 #####
@@ -106,6 +116,13 @@ run:
 	$(ECHO) "Starting Rasa Server with logging..."
 	@$(MKDIR_LOG)
 	$(call RASA_DOCKER, run --debug --log-file logs/logs.out --enable-api --cors "*")
+
+# Serve the chat widget and open it in the browser.
+# Run this in a second terminal while `make run` is up (the widget talks to the
+# Rasa server at http://localhost:5005). Press Ctrl+C to stop the widget server.
+chat:
+	$(ECHO) "Serving chat widget at http://localhost:$(CHAT_PORT) (Ctrl+C to stop)..."
+	$(SERVE_WIDGET)
 
 # Run end-to-end tests on the Rasa model
 test:
