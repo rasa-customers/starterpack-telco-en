@@ -18,8 +18,12 @@ class ActionsRunSpeedTest(Action):
         await asyncio.sleep(10)
         # Send message to the user
         dispatcher.utter_message(text="Thank you for waiting... ✅ ")
-        # We will pick randomly the internet speed here
-        # * For local testing purposes you can define the number
-        # * For Production testing connect to the API to get this data
-        random_number = random.randint(10, 140)
-        return [SlotSet("network_speed", random_number)]
+        # We pick the internet speed randomly here.
+        # * For Production, connect to the API to get this data.
+        # * For deterministic e2e tests, set the `network_speed_override` slot via a
+        #   fixture and we use that instead of a random value (see
+        #   tests/e2e_test_cases/internet_slow_test_case.yml). It is unset in
+        #   production, so behaviour there is unchanged.
+        override = tracker.get_slot("network_speed_override")
+        speed = int(override) if override is not None else random.randint(10, 140)
+        return [SlotSet("network_speed", speed)]

@@ -3,6 +3,13 @@ slots:
     type: float
     mappings:
       - type: controlled
+  # Test-only override read by actions_run_speed_test to make e2e tests
+  # deterministic. Never set in production (controlled = LLM/user can't fill it);
+  # set via fixtures in tests/e2e_test_cases/internet_slow_test_case.yml.
+  network_speed_override:
+    type: float
+    mappings:
+      - type: controlled
   more_help_needed:
     type: bool
     mappings:
