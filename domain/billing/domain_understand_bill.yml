@@ -82,9 +82,7 @@ responses:
           payload: "/SetSlots(issue_solved=False)"
 
   utter_ask_more_bill_details:
-      - text: |
-          You can see more details in your account.
-          Would you like a link to the overview that contains all your bills?
+      - text: "You can see more details in your account. Would you like a link to the overview that contains all your bills?"
         buttons:
         - title: "Yes, please"
           payload: "/SetSlots(more_bill_details=True)"
@@ -94,5 +92,7 @@ responses:
   utter_provide_bill_sources:
       - text: |
           I've provided a quick summary of your bill ⤵️
+
           For full details, please log in to your account and check your billing history here:
+
           https://companyName/account/your-bills 🔗
